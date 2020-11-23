@@ -1,0 +1,25 @@
+@baseUrl = http://onboarding.local
+
+
+###
+GET {{baseUrl}}/user
+
+###
+POST {{baseUrl}}/user
+
+{
+    "firstname": "Annika",
+    "lastname": "Vennemann",
+    "email": "annivenne@ohhh.org",
+    "password": "hello",
+    "startdate": "2021-01-01"
+}
+
+###
+POST {{baseUrl}}/checklist
+
+{
+    "category": "firstDay",
+    "ranking": 1,
+    "text": "Edit your LinkedIn Profile"
+}
