@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function Registration({ onSubmit }) {
+export default function Form({ onSubmit }) {
     const [userData, setUserData] = useState({
         firstName: '',
         lastName: '',
@@ -8,7 +8,6 @@ export default function Registration({ onSubmit }) {
         password: '',
         startdate: '',
     })
-
     
     return (
         <form onSubmit={registerUser}>
@@ -69,14 +68,7 @@ export default function Registration({ onSubmit }) {
 
             <button onClick={registerUser}>Register User</button>
         </form>
-        
     )
-
-    // function handleSubmit(event) {
-    //     event.preventDefault()
-    //     onSubmit(userData)
-    //     console.log(userData)
-    // }
 
     function onChange(event) {
         setUserData({
@@ -85,41 +77,25 @@ export default function Registration({ onSubmit }) {
         })
     }
 
-    
-    // @TODO: implement fetch-post
-
     function registerUser(event) {
         event.preventDefault();
-
-        //console.log(userData)
-    
+        onSubmit(userData)
         var myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
     
-        var raw = JSON.stringify(userData
-            // {
-            // firstname: "Annika",
-            // lastname: "Vennemann",
-            // email: "annivenne@ohhh.org",
-            // password: "hellooooh",
-            // startdate: "2021-01-01"
-            // }
-        );
-    
-        console.log(raw)
-    
+        var raw = JSON.stringify(userData);
         var requestOptions = {
-          method: 'POST',
-          headers: myHeaders,
-          body: raw,
-          redirect: 'follow',
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow',
         };
     
         fetch('http://onboarding.local/user', requestOptions)
             .then((response) => response.text())
             .then(result => console.log(result))
             .catch((error) => console.log('error', error));
-      }
+    }
 
    
 }

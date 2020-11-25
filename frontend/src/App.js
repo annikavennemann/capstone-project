@@ -1,24 +1,18 @@
-import {useEffect, useState} from 'react'
-import getUserData from './service/getUserData'
-import Registration from './components/Registration'
+import {useState} from 'react'
+import Form from './components/Registration/Form'
+import Login from './components/Login/Login'
 
 export default function App() {
   const [userData, setUserData] = useState([])
 
-  useEffect(() => {
-    getUserData().then(userData => setUserData(userData))
-  }, [])
-
   function addUser(user) {
     setUserData([...userData, user])
-    getUserData()
   }
-
 
   return (
     <>
-      <Registration onSubmit={addUser}/>
-      
+      <Form onSubmit={addUser}/>
+      <Login />
     </>
   );
 }
