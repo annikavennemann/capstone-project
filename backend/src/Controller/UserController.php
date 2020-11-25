@@ -7,27 +7,26 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 use App\Repository\UserRepository;
+use App\Serializer\UserSerializer;
 use App\Entity\User;
 
-// @TODO: GET fixen
 
 class UserController extends AbstractController
 {
+
     /**
      * @Route("/user", methods={"GET"})
      */
-    public function index(): JsonResponse {
-        $user = $this->getDoctrine()->getRepository(User::class)->findAll();
-        $response = [];
-
-        foreach($user as $user) {
-            $response[] = $user->toArray();
-        }
+    public function index(
+        Request $request,
+        UserRepository $userRepository,
+        UserSerializer $UserSerializer
+    ): JsonResponse {
+        $user = $userRepository->findAll();
 
         return new JsonResponse(
-            $serializer->serialize($user, 'json'),
+            $UserSerializer->serialize($user),
             JsonResponse::HTTP_OK,
             [],
             true
@@ -39,15 +38,16 @@ class UserController extends AbstractController
      */
     public function create(
         Request $request, 
-        UserRepository $repository, 
-        SerializerInterface $serializer
+        UserRepository $userRepository, 
+        UserSerializer $UserSerializer
     ): JsonResponse {
-        $user = $serializer->deserialize($request->getContent(), User::class, 'json');
         
-        $repository->save($user);
+        $user = $UserSerializer->deserialize($request->getContent());
+        
+        $userRepository->save($user);
 
         return new JsonResponse(
-            $serializer->serialize($user, 'json'),
+            $UserSerializer->serialize($user),
             JsonResponse::HTTP_OK,
             [],
             true

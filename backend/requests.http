@@ -12,8 +12,17 @@ POST {{baseUrl}}/user
     "lastname": "Vennemann",
     "email": "annivenne@ohhh.org",
     "password": "hello",
-    "startdate": "2021-01-01"
+    "startdate": "01-01-2021"
 }
+
+###
+Post {{baseUrl}}/login
+
+{
+    "email": "annivenne@ohhh.org",
+    "password": "hello"
+}
+
 
 ###
 POST {{baseUrl}}/checklist
