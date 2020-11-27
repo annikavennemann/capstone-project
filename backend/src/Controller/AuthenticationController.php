@@ -9,7 +9,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
 use App\Repository\TokenRepository;
 use App\Serializer\TokenSerializer;
-use App\Serializer\UserSerializer;
 use App\Entity\User;
 use App\Entity\Token;
 
@@ -22,8 +21,7 @@ class AuthenticationController extends AbstractController
         Request $request,
         UserRepository $userRepository,
         TokenRepository $tokenRepository,
-        tokenSerializer $tokenSerializer,
-        UserSerializer $UserSerializer
+        TokenSerializer $tokenSerializer
         ): JsonResponse {
         
         $post = json_decode($request->getContent(), true);
