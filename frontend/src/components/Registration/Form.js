@@ -10,9 +10,9 @@ export default function Form({ onSubmit }) {
     })
     
     return (
-        <form onSubmit={registerUser}>
-            <label htmlFor="firstname">
-                First name
+        <>
+            <form onSubmit={registerUser}>
+                <label htmlFor="firstname">First name</label>
                 <input
                     id="firstname"
                     type="text"
@@ -20,10 +20,8 @@ export default function Form({ onSubmit }) {
                     onChange={onChange}
                     value={userData.firstname}
                 />
-            </label>
 
-            <label htmlFor="lastname">
-                Last name
+                <label htmlFor="lastname">Last name</label>
                 <input
                     id="lastname"
                     type="text"
@@ -31,10 +29,8 @@ export default function Form({ onSubmit }) {
                     onChange={onChange}
                     value={userData.lastname}
                 />
-            </label>
-
-            <label htmlFor="email">
-                Email
+                
+                <label htmlFor="email">Email</label>
                 <input
                     id="email"
                     type="email"
@@ -42,10 +38,8 @@ export default function Form({ onSubmit }) {
                     onChange={onChange}
                     value={userData.email}
                 />
-            </label>
 
-            <label htmlFor="password">
-                Password
+                <label htmlFor="password">Password</label>
                 <input
                     id="password"
                     type="password"
@@ -53,10 +47,8 @@ export default function Form({ onSubmit }) {
                     onChange={onChange}
                     value={userData.password}
                 />
-            </label>
-
-            <label htmlFor="startdate">
-                Start date
+                
+                <label htmlFor="startdate">Start date</label>
                 <input
                     id="startdate"
                     type="date"
@@ -64,10 +56,13 @@ export default function Form({ onSubmit }) {
                     onChange={onChange}
                     value={userData.startdate}
                 />
-            </label>
 
-            <button onClick={registerUser}>Register User</button>
-        </form>
+                <button onClick={registerUser}>Register User</button>
+
+            </form>
+            <p>You already have an account yet?</p>
+          <a href="/">Sign in!</a>
+        </>
     )
 
     function onChange(event) {

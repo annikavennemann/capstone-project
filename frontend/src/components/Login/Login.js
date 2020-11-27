@@ -8,9 +8,9 @@ export default function Login() {
     })
 
     return (
-        <form>
-          <label htmlFor="email">
-            Email
+        <>
+          <form>
+            <label htmlFor="email">Email</label>
             <input 
               type="email"
               name="email"
@@ -18,21 +18,21 @@ export default function Login() {
               onChange={onChange}
               value={loginData.email}
             />
-          </label>
 
-          <label htmlFor="password">
-            Password
+            <label htmlFor="password">Password</label>
             <input 
               type="password"
               name="password"
               onChange={onChange}
               value={loginData.password}
             />
-          </label>
 
-
-          <button onClick={loginUser}>Login</button>
-        </form>
+            <button onClick={loginUser}>Login</button>
+            
+          </form>
+          <p>Havn't an account yet?</p>
+          <a href="/create-account">Sign up!</a>
+        </>
       );
 
       function onChange(event) {
