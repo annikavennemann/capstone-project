@@ -56,12 +56,12 @@ export default function Login() {
 
       function loginUser(event) {
         event.preventDefault();
-        var myHeaders = new Headers();
+        const myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
     
-        var raw = JSON.stringify(loginData);
+        const raw = JSON.stringify(loginData);
     
-        var requestOptions = {
+        const requestOptions = {
             method: 'POST',
             headers: myHeaders,
             body: raw,
@@ -86,7 +86,7 @@ const FormStyled = styled.form`
   margin: 2em;
   padding: 4.5em 2em 3.6em;
   box-shadow: 4px 4px 18px #00000029;
-  border-radius: 15px;
+  border-radius: 20px;
 
   input {
     width: 100%;
