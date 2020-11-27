@@ -2,37 +2,40 @@
 
 namespace App\Serializer;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use App\Entity\User;
 
 class UserSerializer {
-    public function serialize($users) {
-        $userJson = [];
-        if (is_array($users)) {
-            foreach($users as $user) {
-                $userJson[] = [
-                    'firstname' => $user->getFirstname(),
-                    'lastname' => $user->getLastname(),
-                    'email' => $user->getEmail(),
-                    'password' => $user->getPassword(),
-                    'startdate' => $user->getStartdate()
-                ];
+    
+    private function userArray($element): object {
+
+        $this->elementAsArray[] = [
+            'id' => $element->getId(),
+            'firstname' => $element->getFirstname(),
+            'lastname' => $element->getLastname(),
+            'email' => $element->getEmail(),
+            'password' => $element->getPassword(),
+            'startdate' => $element->getStartdate()
+        ];
+        return($this);
+    }
+
+    public function serialize($elements) {
+        if (is_array($elements)) {
+            foreach($elements as $element) {
+                $this->userArray($element);
             }
         } else {
-            $userJson[] = [
-                'firstname' => $users->getFirstname(),
-                'lastname' => $users->getLastname(),
-                'email' => $users->getEmail(),
-                'password' => $users->getPassword(),
-                'startdate' => $users->getStartdate()
-            ];
+            $this->userArray($elements);
         }
-        return \json_encode($userJson);
+        return \json_encode($this->elementAsArray);
     }
 
     public function deserialize($content) {
         $postData = \json_decode($content);
-        $userObject = new User();
 
+        $userObject = new User();
         $userObject->setFirstname($postData->firstname);
         $userObject->setLastname($postData->lastname);
         $userObject->setEmail($postData->email);

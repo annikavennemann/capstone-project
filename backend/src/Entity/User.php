@@ -141,7 +141,6 @@ class User
     public function removeToken(Token $token): self
     {
         if ($this->tokens->removeElement($token)) {
-            // set the owning side to null (unless already changed)
             if ($token->getUser() === $this) {
                 $token->setUser(null);
             }
