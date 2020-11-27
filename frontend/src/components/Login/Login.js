@@ -127,10 +127,12 @@ const FooterStyled = styled.footer`
   p {
     margin: 0;
     padding-right: 0.5em;
+    font-size: 0.9em;
   }
 
   a {
     text-decoration: none;
     color: #029FE3;
+    font-size: 0.9em;
   }
 `
