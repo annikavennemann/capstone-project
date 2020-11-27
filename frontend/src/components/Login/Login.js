@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import saveLocally from '../../lib/saveLocally';
+import styled from 'styled-components/macro'
+import signInHeader from '../../images/signInHeader.svg'
 
 export default function Login() {
     const [loginData, setLoginData] = useState({
@@ -9,6 +11,9 @@ export default function Login() {
 
     return (
         <>
+          <header>
+              <HeaderImg src={signInHeader} alt="Ohhh hi! Great day!" />
+          </header>
           <form>
             <label htmlFor="email">Email</label>
             <input 
@@ -30,8 +35,10 @@ export default function Login() {
             <button onClick={loginUser}>Login</button>
             
           </form>
-          <p>Havn't an account yet?</p>
-          <a href="/create-account">Sign up!</a>
+          <footer>
+            <p>Havn't an account yet?</p>
+            <a href="/create-account">Sign up!</a>
+          </footer>
         </>
       );
 
@@ -62,3 +69,10 @@ export default function Login() {
             .catch((error) => console.log('error', error));
       }
 }
+
+const HeaderImg = styled.img`
+  margin-top: 5em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+`

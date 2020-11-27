@@ -13,7 +13,7 @@ export default function App() {
 
   return (
     <Router>
-      <main>
+      <div>
         <Switch>
           <Route path="/create-account">
             <Form onSubmit={addUser}/>
@@ -27,7 +27,7 @@ export default function App() {
             <Login />
           </Route>
         </Switch>
-      </main>
+      </div>
     </Router>
   );
 }
