@@ -1,6 +1,6 @@
 import {useState} from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Form from './components/Registration/Form'
+import { Route, Switch } from 'react-router-dom'
+import RegisterForm from './components/Registration/RegisterForm'
 import Login from './components/Login/Login'
 import Checklist from './components/Checklist/Checklist'
 
@@ -12,11 +12,10 @@ export default function App() {
   }
 
   return (
-    <Router>
       <>
         <Switch>
           <Route path="/create-account">
-            <Form onSubmit={addUser}/>
+            <RegisterForm onSubmit={addUser}/>
           </Route>
 
           <Route path="/checklist">
@@ -28,6 +27,5 @@ export default function App() {
           </Route>
         </Switch>
       </>
-    </Router>
   );
 }

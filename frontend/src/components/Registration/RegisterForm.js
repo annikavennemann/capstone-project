@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import signUpHeader from '../../images/signUpHeader.svg'
 import signUpButton from '../../images/signUpButton.svg'
 
-export default function Form({ onSubmit }) {
+export default function RegisterForm({ onSubmit }) {
     const [userData, setUserData] = useState({
         firstName: '',
         lastName: '',
@@ -17,7 +17,7 @@ export default function Form({ onSubmit }) {
             <header>
                 <HeaderImg src={signUpHeader} alt="Welcome to Ohhhboarding!" />
             </header>
-            <FormStyled onSubmit={registerUser}>
+            <Form onSubmit={registerUser}>
 
             <label htmlFor="email" />
                 <input
@@ -55,7 +55,7 @@ export default function Form({ onSubmit }) {
                     value={userData.password}
                 />
                 
-                <StartdateStyled htmlFor="startdate" >
+                <Startdate htmlFor="startdate" >
                     Start date
                     <input
                         type="date"
@@ -64,19 +64,19 @@ export default function Form({ onSubmit }) {
                         onChange={onChange}
                         value={userData.startdate}
                     />
-                </StartdateStyled>
+                </Startdate>
                 
                 <SignUpWrapper>
                     <p>Sign up</p>
                     <button onClick={registerUser}><img src={signUpButton} alt=""/></button>
                 </SignUpWrapper>
 
-            </FormStyled>
+            </Form>
 
-            <FooterStyled>
+            <Footer>
                 <p>You already have an account yet?</p>
                 <a href="/">Sign in.</a>
-            </FooterStyled>
+            </Footer>
         </>
     )
 
@@ -92,11 +92,11 @@ export default function Form({ onSubmit }) {
 
         if (validRegistration(userData)){
             onSubmit(userData)
-            var myHeaders = new Headers();
+            const myHeaders = new Headers();
             myHeaders.append('Content-Type', 'application/json');
         
-            var raw = JSON.stringify(userData);
-            var requestOptions = {
+            const raw = JSON.stringify(userData);
+            const requestOptions = {
                 method: 'POST',
                 headers: myHeaders,
                 body: raw,
@@ -107,6 +107,7 @@ export default function Form({ onSubmit }) {
             .then((response) => response.text())
             .then(result => console.log(result))
             .catch((error) => console.log('error', error))
+            // @TODO: error handling if something goes wrong
         } else {
             alert('Please check your form details.')
         }
@@ -119,7 +120,6 @@ export default function Form({ onSubmit }) {
     const validateEmail = ({ email }) =>
         email.includes('@ohhh.org')
 
-
     const validRegistration = (userData) =>
         validateName(userData) && validateEmail(userData)
 
@@ -130,11 +130,11 @@ const HeaderImg = styled.img`
   margin-right: auto;
 `
 
-const FormStyled = styled.form`
+const Form = styled.form`
   margin: 2em;
   padding: 3em 2em 1em;
   box-shadow: 4px 4px 18px #00000029;
-  border-radius: 15px;
+  border-radius: 20px;
 
   input {
     width: 100%;
@@ -150,7 +150,7 @@ const FormStyled = styled.form`
   }
 `
 
-const StartdateStyled = styled.label`
+const Startdate = styled.label`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -183,7 +183,7 @@ const SignUpWrapper = styled.div`
   }
 `
 
-const FooterStyled = styled.footer`
+const Footer = styled.footer`
     position: fixed;
     display: flex;
     justify-content: center;
