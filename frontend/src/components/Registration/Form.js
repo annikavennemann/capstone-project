@@ -28,7 +28,7 @@ export default function Form({ onSubmit }) {
                     value={userData.email}
                 />
 
-                <label htmlFor="firstname" />
+                <label htmlFor="firstname" id="firstname"/>
                 <input
                     type="text"
                     name="firstname"
@@ -89,26 +89,39 @@ export default function Form({ onSubmit }) {
 
     function registerUser(event) {
         event.preventDefault();
-        onSubmit(userData)
-        var myHeaders = new Headers();
-        myHeaders.append('Content-Type', 'application/json');
-    
-        var raw = JSON.stringify(userData);
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow',
-        };
-    
-        fetch('http://onboarding.local/user', requestOptions)
+
+        if (validRegistration(userData)){
+            onSubmit(userData)
+            var myHeaders = new Headers();
+            myHeaders.append('Content-Type', 'application/json');
+        
+            var raw = JSON.stringify(userData);
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow',
+            }
+
+            fetch('http://onboarding.local/user', requestOptions)
             .then((response) => response.text())
             .then(result => console.log(result))
-            .catch((error) => console.log('error', error));
+            .catch((error) => console.log('error', error))
+        } else {
+            alert('Please check your form details.')
+        }
     }
-
-   
 }
+
+    const validateName = ({ firstname, lastname }) =>
+        firstname.length >= 2 && lastname.length >= 2
+
+    const validateEmail = ({ email }) =>
+        email.includes('@ohhh.org')
+
+
+    const validRegistration = (userData) =>
+        validateName(userData) && validateEmail(userData)
 
 const HeaderImg = styled.img`
   display: block;
