@@ -65,11 +65,9 @@ class UserChecklist
 
     public function removeUser(User $user): self
     {
-        if ($this->user->removeElement($user)) {
+        if ($this->user->removeElement($user) && $user->getUserChecklist() === $this) {
             // set the owning side to null (unless already changed)
-            if ($user->getUserChecklist() === $this) {
-                $user->setUserChecklist(null);
-            }
+            $user->setUserChecklist(null);
         }
 
         return $this;
