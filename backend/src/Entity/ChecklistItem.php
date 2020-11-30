@@ -14,7 +14,7 @@ class ChecklistItem
     const TYPE_DAY = "day";
     const TYPE_WEEK = "week";
     const TYPE_MONTH = "month";
-    const TYPE_HUNDREDDAYS = "100days";
+    const TYPE_ONE_HUNDRED_DAYS = "100days";
 
     /**
      * @ORM\Id
