@@ -73,6 +73,7 @@ export default function Login() {
             .then(result => saveLocally("authenticationToken", result.token))
             .catch((error) => console.log('error', error));
       }
+      // @TODO: else alert('Please check your form password.')
 }
 
 const HeaderImg = styled.img`

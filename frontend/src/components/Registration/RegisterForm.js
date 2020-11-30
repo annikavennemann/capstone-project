@@ -5,8 +5,8 @@ import signUpButton from '../../images/signUpButton.svg'
 
 export default function RegisterForm({ onSubmit }) {
     const [userData, setUserData] = useState({
-        firstName: '',
-        lastName: '',
+        firstname: '',
+        lastname: '',
         email: '',
         password: '',
         startdate: '',
@@ -108,6 +108,7 @@ export default function RegisterForm({ onSubmit }) {
             .then(result => console.log(result))
             .catch((error) => console.log('error', error))
             // @TODO: error handling if something goes wrong
+            // @TODO: If I send the form without data: Error 'cannot read property of undefined'
         } else {
             alert('Please check your form details.')
         }
