@@ -49,6 +49,11 @@ class User
      */
     private $tokens;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=UserChecklist::class, inversedBy="user")
+     */
+    private $userChecklist;
+
     public function __construct()
     {
         $this->tokens = new ArrayCollection();
@@ -145,6 +150,18 @@ class User
                 $token->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUserChecklist(): ?UserChecklist
+    {
+        return $this->userChecklist;
+    }
+
+    public function setUserChecklist(?UserChecklist $userChecklist): self
+    {
+        $this->userChecklist = $userChecklist;
 
         return $this;
     }

@@ -19,32 +19,11 @@ class UserChecklistRepository extends ServiceEntityRepository
         parent::__construct($registry, UserChecklist::class);
     }
 
-    // /**
-    //  * @return UserChecklist[] Returns an array of UserChecklist objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    public function save(UserChecklist $userChecklist): UserChecklist  {
+        $this->_em->persist($userChecklist);
+        $this->_em->flush();
 
-    /*
-    public function findOneBySomeField($value): ?UserChecklist
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        return $userChecklist;
     }
-    */
+
 }

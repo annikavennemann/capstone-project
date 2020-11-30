@@ -20,15 +20,24 @@ class UserChecklist
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="userChecklist")
+     */
+    private $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ChecklistItem::class, mappedBy="userChecklist")
+     */
+    private $checklistItem;
+
+    /**
      * @ORM\Column(type="boolean")
      */
-    private $isComplete;
-
+    private $isChecked;
 
     public function __construct()
     {
-        $this->user_id = new ArrayCollection();
-        $this->checklist_id = new ArrayCollection();
+        $this->user = new ArrayCollection();
+        $this->checklistItem = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -36,14 +45,74 @@ class UserChecklist
         return $this->id;
     }
 
-    public function getIsComplete(): ?bool
+    /**
+     * @return Collection|User[]
+     */
+    public function getUser(): Collection
     {
-        return $this->isComplete;
+        return $this->user;
     }
 
-    public function setIsComplete(bool $isComplete): self
+    public function addUser(User $user): self
     {
-        $this->isComplete = $isComplete;
+        if (!$this->user->contains($user)) {
+            $this->user[] = $user;
+            $user->setUserChecklist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->user->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getUserChecklist() === $this) {
+                $user->setUserChecklist(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ChecklistItem[]
+     */
+    public function getChecklistItem(): Collection
+    {
+        return $this->checklistItem;
+    }
+
+    public function addChecklistItem(ChecklistItem $checklistItem): self
+    {
+        if (!$this->checklistItem->contains($checklistItem)) {
+            $this->checklistItem[] = $checklistItem;
+            $checklistItem->setUserChecklist($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChecklistItem(ChecklistItem $checklistItem): self
+    {
+        if ($this->checklistItem->removeElement($checklistItem)) {
+            // set the owning side to null (unless already changed)
+            if ($checklistItem->getUserChecklist() === $this) {
+                $checklistItem->setUserChecklist(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getIsChecked(): ?bool
+    {
+        return $this->isChecked;
+    }
+
+    public function setIsChecked(bool $isChecked): self
+    {
+        $this->isChecked = $isChecked;
 
         return $this;
     }
