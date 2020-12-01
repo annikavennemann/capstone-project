@@ -36,10 +36,6 @@ class UserController extends AbstractController
         }
         
         //@TODO: find user by token
-        //$user = $token->getUser()->getFirstName();
-        //$post = json_decode($request->getContent(), true);
-        //$user = $tokenRepository->findUser($post['userName']);
-        
         $user = $userRepository->findAll();
 
         return new JsonResponse(
