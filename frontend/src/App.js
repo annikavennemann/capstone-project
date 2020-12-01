@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import RegisterForm from './components/Registration/RegisterForm'
 import Login from './components/Login/Login'
 import Checklist from './components/Checklist/Checklist'
+import Home from './components/Home/Home'
 
 export default function App() {
   const [userData, setUserData] = useState([])
@@ -21,10 +22,15 @@ export default function App() {
           <Route path="/checklist">
             <Checklist />
           </Route>
+
+          <Route path="/home">
+            <Home />
+          </Route>
           
           <Route path="/">
             <Login />
           </Route>
+          
         </Switch>
       </>
   );

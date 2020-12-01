@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import saveLocally from '../../lib/saveLocally';
+import { useHistory } from "react-router-dom"
+import saveLocally from '../../lib/saveLocally'
 import styled from 'styled-components/macro'
 import signInHeader from '../../images/signInHeader.svg'
 import signInButton from '../../images/signInButton.svg'
@@ -9,13 +10,15 @@ export default function Login() {
       email: '',
       password: ''
     })
+    
+    const history = useHistory();
 
     return (
         <>
           <header>
               <HeaderImg src={signInHeader} alt="Ohhh hi! Great day!" />
           </header>
-          <FormStyled>
+          <FormStyled action="/home">
             <label htmlFor="email" />
             <input 
               type="email"
@@ -69,11 +72,13 @@ export default function Login() {
         };
     
         fetch('http://onboarding.local/login', requestOptions)
-            .then((response) => response.json())
-            .then(result => saveLocally("authenticationToken", result.token))
+            .then((response) => response.text())
+            .then(result => saveLocally("authenticationToken", result))
             .catch((error) => console.log('error', error));
+
+        // @TODO: if password isnt valid -> send User info
+        history.push("/home")
       }
-      // @TODO: else alert('Please check your form password.')
 }
 
 const HeaderImg = styled.img`
