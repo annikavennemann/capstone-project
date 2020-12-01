@@ -8,8 +8,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
+use App\Repository\TokenRepository;
 use App\Serializer\UserSerializer;
+use App\Serializer\TokenSerializer;
 use App\Entity\User;
+use App\Enitiy\Token;
 use App\Service\AuthenticationService;
 
 
@@ -22,7 +25,9 @@ class UserController extends AbstractController
     public function index(
         Request $request,
         UserRepository $userRepository,
+        TokenRepository $tokenRepository,
         UserSerializer $userSerializer,
+        TokenSerializer $tokenSerializer,
         AuthenticationService $authentication
     ): JsonResponse {
         
@@ -30,9 +35,12 @@ class UserController extends AbstractController
             return $this->json(["sucess" => false], JsonResponse::HTTP_UNAUTHORIZED);
         }
         
-        $user = $userRepository->findUser($post['email'], $post['password']);
+        //@TODO: find user by token
+        //$user = $token->getUser()->getFirstName();
+        //$post = json_decode($request->getContent(), true);
+        //$user = $tokenRepository->findUser($post['userName']);
         
-        // $user = $userRepository->findAll();
+        $user = $userRepository->findAll();
 
         return new JsonResponse(
             $userSerializer->serialize($user),
@@ -41,24 +49,6 @@ class UserController extends AbstractController
             true
         );
     }
-
-    // /**
-    //  * @Route("/user", methods={"GET"})
-    //  */
-    // public function index(
-    //     Request $request,
-    //     UserRepository $userRepository,
-    //     UserSerializer $UserSerializer
-    // ): JsonResponse {
-    //     $user = $userRepository->findAll();
-
-    //     return new JsonResponse(
-    //         $UserSerializer->serialize($user),
-    //         JsonResponse::HTTP_OK,
-    //         [],
-    //         true
-    //     );
-    // }
 
     /**
      * @Route("/user", methods={"POST"})

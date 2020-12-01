@@ -34,7 +34,7 @@ class AuthenticationController extends AbstractController
         $token = $tokenRepository->create($user);
         
         return new JsonResponse(
-            $tokenSerializer->serialize($token), // hier kann ich zusätzlich den User zurückgeben, um einen Request zu sparen
+            $tokenSerializer->serialize($token),
             JsonResponse::HTTP_OK,
             [],
             true

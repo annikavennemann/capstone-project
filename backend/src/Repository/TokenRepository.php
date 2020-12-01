@@ -34,4 +34,12 @@ class TokenRepository extends ServiceEntityRepository
 
         return $token;
     }
+
+    // @TODO: Find user by token
+    // public function findUserByToken(string $userName): ?User {
+        
+    //     return $this->findOneBy([
+    //         'userName' => $userName
+    //     ]);
+    // }
 }

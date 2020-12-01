@@ -30,7 +30,7 @@ class UserRepository extends ServiceEntityRepository
         
         return $this->findOneBy([
             'email' => $email,
-            'password' => $password,
+            'password' => $password
         ]);
     }
 
