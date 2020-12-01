@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ChecklistItemRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,12 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ChecklistItem
 {
-
-    const TYPE_DAY = "day";
-    const TYPE_WEEK = "week";
-    const TYPE_MONTH = "month";
-    const TYPE_HUNDREDDAYS = "100days";
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -34,9 +30,14 @@ class ChecklistItem
     private $text;
 
     /**
-     * @ORM\ManyToOne(targetEntity=UserChecklist::class, inversedBy="checklistItem")
+     * @ORM\OneToMany(targetEntity=UserChecklistItems::class, mappedBy="checklistItem")
      */
-    private $userChecklist;
+    private $userChecklistItems;
+
+    public function __construct()
+    {
+        $this->userChecklistItems = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -67,14 +68,32 @@ class ChecklistItem
         return $this;
     }
 
-    public function getUserChecklist(): ?UserChecklist
+    /**
+     * @return Collection|UserChecklistItems[]
+     */
+    public function getUserChecklistItems(): Collection
     {
-        return $this->userChecklist;
+        return $this->userChecklistItems;
     }
 
-    public function setUserChecklist(?UserChecklist $userChecklist): self
+    public function addUserChecklistItem(UserChecklistItems $userChecklistItem): self
     {
-        $this->userChecklist = $userChecklist;
+        if (!$this->userChecklistItems->contains($userChecklistItem)) {
+            $this->userChecklistItems[] = $userChecklistItem;
+            $userChecklistItem->setChecklistItem($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserChecklistItem(UserChecklistItems $userChecklistItem): self
+    {
+        if ($this->userChecklistItems->removeElement($userChecklistItem)) {
+            // set the owning side to null (unless already changed)
+            if ($userChecklistItem->getChecklistItem() === $this) {
+                $userChecklistItem->setChecklistItem(null);
+            }
+        }
 
         return $this;
     }

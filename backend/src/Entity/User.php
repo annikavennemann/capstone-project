@@ -50,13 +50,14 @@ class User
     private $tokens;
 
     /**
-     * @ORM\ManyToOne(targetEntity=UserChecklist::class, inversedBy="user")
+     * @ORM\OneToMany(targetEntity=UserChecklistItems::class, mappedBy="user")
      */
-    private $userChecklist;
+    private $userChecklistItems;
 
     public function __construct()
     {
         $this->tokens = new ArrayCollection();
+        $this->userChecklistItems = new ArrayCollection();
     }
 
 
@@ -154,14 +155,32 @@ class User
         return $this;
     }
 
-    public function getUserChecklist(): ?UserChecklist
+    /**
+     * @return Collection|UserChecklistItems[]
+     */
+    public function getUserChecklistItems(): Collection
     {
-        return $this->userChecklist;
+        return $this->userChecklistItems;
     }
 
-    public function setUserChecklist(?UserChecklist $userChecklist): self
+    public function addUserChecklistItem(UserChecklistItems $userChecklistItem): self
     {
-        $this->userChecklist = $userChecklist;
+        if (!$this->userChecklistItems->contains($userChecklistItem)) {
+            $this->userChecklistItems[] = $userChecklistItem;
+            $userChecklistItem->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserChecklistItem(UserChecklistItems $userChecklistItem): self
+    {
+        if ($this->userChecklistItems->removeElement($userChecklistItem)) {
+            // set the owning side to null (unless already changed)
+            if ($userChecklistItem->getUser() === $this) {
+                $userChecklistItem->setUser(null);
+            }
+        }
 
         return $this;
     }

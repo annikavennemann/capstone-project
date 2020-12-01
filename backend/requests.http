@@ -3,6 +3,7 @@
 
 ###
 GET {{baseUrl}}/user
+Authorization: Bearer 5fc5582f25c031.17535080
 
 ###
 POST {{baseUrl}}/user
@@ -25,10 +26,3 @@ Post {{baseUrl}}/login
 
 
 ###
-POST {{baseUrl}}/checklist
-
-{
-    "category": "firstDay",
-    "ranking": 1,
-    "text": "Edit your LinkedIn Profile"
-}

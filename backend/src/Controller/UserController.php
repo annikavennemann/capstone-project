@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
 use App\Serializer\UserSerializer;
 use App\Entity\User;
+use App\Service\AuthenticationService;
 
 
 class UserController extends AbstractController
@@ -21,17 +22,43 @@ class UserController extends AbstractController
     public function index(
         Request $request,
         UserRepository $userRepository,
-        UserSerializer $UserSerializer
+        UserSerializer $userSerializer,
+        AuthenticationService $authentication
     ): JsonResponse {
-        $user = $userRepository->findAll();
+        
+        if (!$authentication->isValid($request)) {
+            return $this->json(["sucess" => false], JsonResponse::HTTP_UNAUTHORIZED);
+        }
+        
+        $user = $userRepository->findUser($post['email'], $post['password']);
+        
+        // $user = $userRepository->findAll();
 
         return new JsonResponse(
-            $UserSerializer->serialize($user),
+            $userSerializer->serialize($user),
             JsonResponse::HTTP_OK,
             [],
             true
         );
     }
+
+    // /**
+    //  * @Route("/user", methods={"GET"})
+    //  */
+    // public function index(
+    //     Request $request,
+    //     UserRepository $userRepository,
+    //     UserSerializer $UserSerializer
+    // ): JsonResponse {
+    //     $user = $userRepository->findAll();
+
+    //     return new JsonResponse(
+    //         $UserSerializer->serialize($user),
+    //         JsonResponse::HTTP_OK,
+    //         [],
+    //         true
+    //     );
+    // }
 
     /**
      * @Route("/user", methods={"POST"})

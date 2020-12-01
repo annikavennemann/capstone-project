@@ -19,10 +19,32 @@ class ChecklistItemRepository extends ServiceEntityRepository
         parent::__construct($registry, ChecklistItem::class);
     }
 
-    public function save(ChecklistItem $item): ChecklistItem  {
-        $this->_em->persist($item);
-        $this->_em->flush();
-
-        return $item;
+    // /**
+    //  * @return ChecklistItem[] Returns an array of ChecklistItem objects
+    //  */
+    /*
+    public function findByExampleField($value)
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('c.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
+    */
+
+    /*
+    public function findOneBySomeField($value): ?ChecklistItem
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    */
 }
