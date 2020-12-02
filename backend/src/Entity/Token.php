@@ -25,7 +25,7 @@ class Token
     /**
      * @ORM\Column(type="datetime")
      */
-    private $validuntil;
+    private $validUntil;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="tokens")
@@ -50,14 +50,14 @@ class Token
         return $this;
     }
 
-    public function getValiduntil(): ?\DateTimeInterface
+    public function getValidUntil(): ?\DateTimeInterface
     {
-        return $this->validuntil;
+        return $this->validUntil;
     }
 
-    public function setValiduntil(\DateTimeInterface $validuntil): self
+    public function setValidUntil(\DateTimeInterface $validUntil): self
     {
-        $this->validuntil = $validuntil;
+        $this->validUntil = $validUntil;
 
         return $this;
     }

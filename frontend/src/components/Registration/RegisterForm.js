@@ -5,8 +5,8 @@ import signUpButton from '../../images/signUpButton.svg'
 
 export default function RegisterForm({ onSubmit }) {
     const [userData, setUserData] = useState({
-        firstName: '',
-        lastName: '',
+        firstname: '',
+        lastname: '',
         email: '',
         password: '',
         startdate: '',

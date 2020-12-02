@@ -49,9 +49,15 @@ class User
      */
     private $tokens;
 
+    /**
+     * @ORM\OneToMany(targetEntity=UserChecklistItems::class, mappedBy="user")
+     */
+    private $userChecklistItems;
+
     public function __construct()
     {
         $this->tokens = new ArrayCollection();
+        $this->userChecklistItems = new ArrayCollection();
     }
 
 
@@ -144,6 +150,33 @@ class User
             if ($token->getUser() === $this) {
                 $token->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserChecklistItems[]
+     */
+    public function getUserChecklistItems(): Collection
+    {
+        return $this->userChecklistItems;
+    }
+
+    public function addUserChecklistItem(UserChecklistItems $userChecklistItem): self
+    {
+        if (!$this->userChecklistItems->contains($userChecklistItem)) {
+            $this->userChecklistItems[] = $userChecklistItem;
+            $userChecklistItem->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserChecklistItem(UserChecklistItems $userChecklistItem): self
+    {
+        if ($this->userChecklistItems->removeElement($userChecklistItem) && $userChecklistItems->getUser() === $this) {
+            $userChecklistItem->setUser(null);
         }
 
         return $this;

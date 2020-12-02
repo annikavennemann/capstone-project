@@ -8,8 +8,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
+use App\Repository\TokenRepository;
 use App\Serializer\UserSerializer;
+use App\Serializer\TokenSerializer;
 use App\Entity\User;
+use App\Enitiy\Token;
+use App\Service\AuthenticationService;
 
 
 class UserController extends AbstractController
@@ -21,12 +25,21 @@ class UserController extends AbstractController
     public function index(
         Request $request,
         UserRepository $userRepository,
-        UserSerializer $UserSerializer
+        TokenRepository $tokenRepository,
+        UserSerializer $userSerializer,
+        TokenSerializer $tokenSerializer,
+        AuthenticationService $authentication
     ): JsonResponse {
+        
+        if (!$authentication->isValid($request)) {
+            return $this->json(["sucess" => false], JsonResponse::HTTP_UNAUTHORIZED);
+        }
+        
+        //@TODO: find user by token
         $user = $userRepository->findAll();
 
         return new JsonResponse(
-            $UserSerializer->serialize($user),
+            $userSerializer->serialize($user),
             JsonResponse::HTTP_OK,
             [],
             true
