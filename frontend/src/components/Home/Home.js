@@ -5,6 +5,13 @@ import styled from 'styled-components/macro'
 import welcomePageHeader from '../../images/welcomePageHeader.svg'
 import nextIcon from '../../images/nextIcon.svg'
 import infoIcon from '../../images/info.svg'
+import valueAmbitious from '../../images/valueAmbitious.png'
+import valueRespect from '../../images/valueRespect.png'
+import valueDiverse from '../../images/valueDiverse.png'
+import valueVisonary from '../../images/valueVisonary.png'
+import mailIcon from '../../images/mailIcon.svg'
+import phoneIcon from '../../images/phoneIcon.svg'
+import checklistIconLight from '../../images/checklistIconLight.svg'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
@@ -38,7 +45,7 @@ export default function Home() {
         <Header>
             <HeaderImg src={welcomePageHeader} alt="Welcome to Ohhh!" />
         </Header>
-        <Main>
+        <Wrapper>
             <Headline>Hi <span>{userName}!</span></Headline>
 
             <WelcomeBox>
@@ -57,29 +64,56 @@ export default function Home() {
                     height='auto'
                     box-shadow='4px 4px 18px #00000029'
                 />
-            <div>
-                <h3>Who we aspire to be</h3>
-                <Vision>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Lorem ipsum.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                </Vision>
-            </div>
+            
+            <h3>Who we aspire to be</h3>
+            <Vision>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                <li>Lorem ipsum.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            </Vision>
+            
 
             <h3>Our core values</h3>
+            </Wrapper>
+            <ValueWrapper>
+                <img src={valueAmbitious} alt="meeting of young people in a wooden conference room"/>
+                <img src={valueRespect} alt="colorful bus on christopher street day"/>
+                <img src={valueDiverse} alt="colorfully branded faq you book and mate mate"/>
+                <img src={valueVisonary} alt="two people at a podium discussion"/>
 
-            <div>
-                <BlueHeadline>Our way of working</BlueHeadline>
-                <ul>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                    <li>Lorem ipsum.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur.</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                </ul>
-            </div>
+            </ValueWrapper>
+            <Wrapper>
+                <div>
+                    <BlueHeadline>Our way of working</BlueHeadline>
+                    <WayOfWorking>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                        <li>Lorem ipsum.</li>
+                        <li>Lorem ipsum dolor sit amet, consectetur.</li>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    </WayOfWorking>
+                </div>
 
-        </Main>
+                <BoxNext>
+                    <h3>Ohhh, what's next?</h3>
+                    <p>To give you an overview of upcoming tasks, we prepared a personal checklist for you.</p>
+                    <img src={checklistIconLight} alt=""/>
+                </BoxNext>
+
+                
+                    <p>If you have any doubts or questions, just let us know</p>
+                    <ContactWrapper>
+                        <a href="mailto:annika.vennemann@youth-against-aids.org">
+                            <img src={mailIcon} alt="" />
+                        </a>
+                        <a href="tel:0049-173-3975041">
+                            <img src={phoneIcon} alt="" />
+                        </a>
+                    </ContactWrapper>
+                
+            </Wrapper>
+
+        
 
         </>
     )
@@ -97,8 +131,13 @@ const HeaderImg = styled.img`
     padding: 1em;
 `
 
-const Main = styled.main`
+const Wrapper = styled.div`
     margin: 0.5em 2em;
+    
+    p {
+        text-align: center;
+        font-size: 20px;
+    }
 `
 
 const Headline = styled.h2`
@@ -151,6 +190,68 @@ const Vision = styled.ul`
     }
 `
 
+const ValueWrapper = styled.div`
+    margin: 0 0 0 -0.5em;
+    padding: 0;
+    display: flex;
+    height: 7em;
+    width: auto;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    img {
+        height: 7em;
+        width: 7em;
+        margin: 0 0.5em;
+        border-radius: 35px;
+    }
+`
+
 const BlueHeadline = styled.h3`
     color: #029FE3;
+    font-size: 24px;
+`
+
+const WayOfWorking = styled.ul`
+
+    li {
+        font-size: 20px;
+    }
+`
+
+const BoxNext = styled.div`
+    margin: 2em 0;
+    padding: 0.5em 0 0.7em;
+    box-shadow: 4px 4px 18px #00000029;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+        margin: 0;
+        padding: 0.25em;
+    }
+
+    p {
+        margin: 0;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    img {
+        padding: 0.5em 0.5em 0 0;
+        align-self: flex-end;
+    }
+`
+
+const ContactWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+
+    img {
+        margin: 0.5em;
+        height: 1em;
+        width: auto;
+        color: #DBDBDB;
+    }
 `
