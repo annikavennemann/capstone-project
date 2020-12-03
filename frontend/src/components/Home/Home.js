@@ -13,6 +13,7 @@ import mailIcon from '../../images/mailIcon.svg'
 import phoneIcon from '../../images/phoneIcon.svg'
 import checklistIconLight from '../../images/checklistIconLight.svg'
 import { useEffect, useState } from 'react'
+import Navigation from '../Navigation/Navigation'
 
 export default function Home() {
     
@@ -110,11 +111,8 @@ export default function Home() {
                             <img src={phoneIcon} alt="" />
                         </a>
                     </ContactWrapper>
-                
             </Wrapper>
-
-        
-
+            <Navigation />
         </>
     )
 }
@@ -247,6 +245,7 @@ const BoxNext = styled.div`
 const ContactWrapper = styled.div`
     display: flex;
     justify-content: center;
+    margin-bottom: 5em;
 
     img {
         margin: 0.5em;
