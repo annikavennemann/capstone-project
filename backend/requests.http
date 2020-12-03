@@ -3,7 +3,7 @@
 
 ###
 GET {{baseUrl}}/user
-Authorization: Bearer 5fc64246f0f203.03500178
+Authorization: Bearer 5fc64ad377b8c8.47900751
 
 ###
 POST {{baseUrl}}/user
