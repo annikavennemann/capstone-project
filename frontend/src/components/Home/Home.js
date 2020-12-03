@@ -59,7 +59,26 @@ export default function Home() {
                 />
             <div>
                 <h3>Who we aspire to be</h3>
+                <Vision>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li>Lorem ipsum.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                </Vision>
             </div>
+
+            <h3>Our core values</h3>
+
+            <div>
+                <BlueHeadline>Our way of working</BlueHeadline>
+                <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li>Lorem ipsum.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur.</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                </ul>
+            </div>
+
         </Main>
 
         </>
@@ -124,4 +143,14 @@ const InfoBox = styled.div`
         padding-right: 0.6em;
     }
 `
+const Vision = styled.ul`
+    list-style-image: url("../../images/bulletpoint.svg");
 
+    li {
+        font-size: 20px;
+    }
+`
+
+const BlueHeadline = styled.h3`
+    color: #029FE3;
+`

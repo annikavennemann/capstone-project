@@ -15,6 +15,8 @@ export default createGlobalStyle`
     }
 
     h3 {
+        font-size: 24px;
+        text-align: center;
         color: #F5BAC4;
     }
     
