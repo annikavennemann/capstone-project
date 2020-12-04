@@ -93,7 +93,7 @@ const HeaderImg = styled.img`
 const FormStyled = styled.form`
   margin: 2em;
   padding: 4.5em 2em 3.6em;
-  box-shadow: 4px 4px 18px #00000029;
+  box-shadow: 4px 4px 18px hsla(0, 0%, 0%, 0.3);
   border-radius: 20px;
 
   input {

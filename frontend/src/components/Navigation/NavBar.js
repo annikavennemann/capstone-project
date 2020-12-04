@@ -26,16 +26,16 @@ export default function Navigation() {
 const NavStyled = styled.nav`
     position: fixed;
     bottom: 2em;
-    width: 95%;
+    width: 92%;
     height: 2.5em;
     display: flex;
     margin-left: 2.5%;
     padding: 0.5em 2em;
     justify-content: space-between;
     background-color: #FFFFFF;
-    box-shadow: 4px 4px 18px #00000029;
+    box-shadow: 4px 4px 18px hsla(0, 0%, 0%, 0.3);
     border-radius: 10px;
-    z-index: 100;
+    z-index: 10;
 `
 const NavLinkStyled = styled(NavLink)`
     img {
