@@ -13,7 +13,7 @@ import mailIcon from '../../images/mailIcon.svg'
 import phoneIcon from '../../images/phoneIcon.svg'
 import checklistIconLight from '../../images/checklistIconLight.svg'
 import { useEffect, useState } from 'react'
-import Navigation from '../Navigation/Navigation'
+import Navigation from '../Navigation/NavBar'
 
 export default function Home() {
     
@@ -24,14 +24,14 @@ export default function Home() {
         return new Promise(resolve => setTimeout(resolve, milliseconds));
        }
   
+    useEffect(() => {
+        waiting();
+    })
+
     async function waiting() {
         await sleep(3000);
         setUserData(loadLocally("authenticationToken"))
        }
-       
-       useEffect(() => {
-           waiting();
-        })
         
         try {
             userName = userData.userName
@@ -44,7 +44,7 @@ export default function Home() {
     return (
         <>
         <Header>
-            <HeaderImg src={welcomePageHeader} alt="Welcome to Ohhh!" />
+            <img src={welcomePageHeader} alt="Welcome to Ohhh!" />
         </Header>
         <Wrapper>
             <Headline>Hi <span>{userName}!</span></Headline>
@@ -63,7 +63,7 @@ export default function Home() {
                     url='https://www.youtube.com/watch?v=BHYr395khcs' 
                     width='100%'
                     height='auto'
-                    box-shadow='4px 4px 18px #00000029'
+                    box-shadow='4px 4px 18px hsla(0, 0%, 0%, 0.3)'
                 />
             
             <h3>Who we aspire to be</h3>
@@ -120,13 +120,13 @@ export default function Home() {
 const Header = styled.header`
     margin: 0;
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(208,208,208,1) 100%);
-`
-
-const HeaderImg = styled.img`
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1em;
+    
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1em;
+    }
 `
 
 const Wrapper = styled.div`
@@ -155,14 +155,14 @@ const Headline = styled.h2`
 const WelcomeBox = styled.div`
     margin: 1em 0 0 0;
     padding: 1.5em 2em;
-    box-shadow: 4px 4px 18px #00000029;
+    box-shadow: 4px 4px 18px hsla(0, 0%, 0%, 0.3);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
 
     p {
         text-align: center;
-        font-size: 20px;
+        font-size: 1.2rem;
     }
 
     img {
@@ -189,7 +189,7 @@ const Vision = styled.ul`
 `
 
 const ValueWrapper = styled.div`
-    margin: 0 0 0 -0.5em;
+    margin-right: -0.5em;
     padding: 0;
     display: flex;
     height: 7em;
@@ -220,7 +220,7 @@ const WayOfWorking = styled.ul`
 const BoxNext = styled.div`
     margin: 2em 0;
     padding: 0.5em 0 0.7em;
-    box-shadow: 4px 4px 18px #00000029;
+    box-shadow: 4px 4px 18px hsla(0, 0%, 0%, 0.3);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
