@@ -88,10 +88,10 @@ export default function Home() {
                 <div>
                     <BlueHeadline>Our way of working</BlueHeadline>
                     <WayOfWorking>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                        <li>Lorem ipsum.</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur.</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                        <li>customer-centered</li>
+                        <li>agile</li>
+                        <li>data-based</li>
+                        <li>Together we can make a difference. <span>#strongertogether</span></li>
                     </WayOfWorking>
                 </div>
 
@@ -190,12 +190,13 @@ const Vision = styled.ul`
     flex-direction: column;
     align-items: flex-start;
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 1em;
 
     li {
         font-size: 20px;
         list-style: none;
         position: relative;
+        margin-bottom: 0.5em;
         padding-left: 30px;
     }
 
@@ -240,13 +241,19 @@ const WayOfWorking = styled.ul`
     flex-direction: column;
     align-items: flex-start;
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 1em;
 
     li {
         font-size: 20px;
         list-style: none;
         position: relative;
+        margin-bottom: 0.5em;
         padding-left: 30px;
+
+        span {
+            font-size: 0.8em;
+            color: #029FE3;
+        }
     }
 
     li::before {
