@@ -16,7 +16,8 @@ class UserSerializer {
             'lastname' => $element->getLastname(),
             'email' => $element->getEmail(),
             'password' => $element->getPassword(),
-            'startdate' => $element->getStartdate()
+            'startdate' => $element->getStartdate(),
+            'userChecklist' => $element->getUserChecklistItems()
         ];
         return($this);
     }

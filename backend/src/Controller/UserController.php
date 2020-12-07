@@ -36,6 +36,7 @@ class UserController extends AbstractController
         }
         
         //@TODO: find user by token
+        //$user = $userRepository->findOneBy($id);
         $user = $userRepository->findAll();
 
         return new JsonResponse(

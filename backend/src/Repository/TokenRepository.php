@@ -42,12 +42,17 @@ class TokenRepository extends ServiceEntityRepository
         return $token;
     }
 
-    // @TODO: Find user by token
-    public function findUserByToken(string $value): ?Token {
-        
-        return $this->findOneBy([
-            'value' => $value,
-            'userName' => $userName
-        ]);
+    public function deleteToken(Token $token): void {
+        $this->_em->remove($token);
+        $this->_em->flush();
     }
+
+    // @TODO: Find user by token
+    // public function findUserByToken(string $value): ?Token {
+        
+    //     return $this->findOneBy([
+    //         'value' => $value,
+    //         'userName' => $userName
+    //     ]);
+    // }
 }

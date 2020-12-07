@@ -29,6 +29,11 @@ class UserChecklistItems
      */
     private $checklistItem;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isChecked;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,6 +59,18 @@ class UserChecklistItems
     public function setChecklistItem(?ChecklistItem $checklistItem): self
     {
         $this->checklistItem = $checklistItem;
+
+        return $this;
+    }
+
+    public function getIsChecked(): ?bool
+    {
+        return $this->isChecked;
+    }
+
+    public function setIsChecked(bool $isChecked): self
+    {
+        $this->isChecked = $isChecked;
 
         return $this;
     }
