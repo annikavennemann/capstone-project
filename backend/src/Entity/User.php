@@ -52,7 +52,7 @@ class User
     /**
      * @ORM\OneToMany(targetEntity=UserChecklistItems::class, mappedBy="user")
      */
-    private $userChecklistItems;
+    protected $userChecklistItems;
 
     public function __construct()
     {

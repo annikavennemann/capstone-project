@@ -5,34 +5,46 @@ namespace App\Serializer;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use App\Entity\User;
+use App\Serializer\UserChecklistSerializer;
 
 class UserSerializer {
-    
-    private function userArray($element): object {
+    private $userChecklistSerializer;
 
-        $this->elementAsArray[] = [
-            'id' => $element->getId(),
-            'firstname' => $element->getFirstname(),
-            'lastname' => $element->getLastname(),
-            'email' => $element->getEmail(),
-            'password' => $element->getPassword(),
-            'startdate' => $element->getStartdate(),
-            'userChecklist' => $element->getUserChecklistItems()
-        ];
-        return($this);
+    public function __construct(
+        UserChecklistSerializer $userChecklistSerializer) {
+        $this->userChecklistSerializer = $userChecklistSerializer;
     }
 
-    public function serialize($elements) {
-        if (is_array($elements)) {
-            foreach($elements as $element) {
-                $this->userArray($element);
+    private function setArray($user): array {
+        
+        $userAsArray = [];
+        $userAsArray[] = [
+            'id' => $user->getId(),
+            'firstname' => $user->getFirstname(),
+            'lastname' => $user->getLastname(),
+            'email' => $user->getEmail(),
+            'password' => $user->getPassword(),
+            'startdate' => $user->getStartdate(),
+            'userChecklist' => $this->userChecklistSerializer->getArray($user)
+        ];
+        
+        return $userAsArray;
+    }
+
+    public function serialize($users) {
+        if (is_array($users)) {
+            foreach($users as $user) {
+                $this->setArray($user);
             }
         } else {
-            $this->userArray($elements);
+            $this->setArray($users);
         }
-        return \json_encode($this->elementAsArray);
+        
+        return \json_encode($this->setArray($users));
     }
 
+
+    
     public function deserialize($content) {
         $postData = \json_decode($content);
 
@@ -42,9 +54,8 @@ class UserSerializer {
         $userObject->setEmail($postData->email);
         $userObject->setPassword($postData->password);
         $date = date_create($postData->startdate);
-        $userObject->setStartdate($date);
+        $userObject->setStartdate($date);         
 
         return $userObject;
     }
-    
 }

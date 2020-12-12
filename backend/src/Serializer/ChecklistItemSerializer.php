@@ -30,31 +30,16 @@ class ChecklistItemSerializer {
         return \json_encode($this->elementAsArray);
     }
     
+
+
     public function deserialize($content) {
         
-            $postData = \json_decode($content);
-        
-            $checklistItem = new ChecklistItem();
-            $checklistItem->setCategory($postData->category);
-            $checklistItem->setText($postData->text);
-        
-            return $checklistItem;
-        }
-        
-    // @TODO: deserialize if array
-    // public function deserialize($content) {
-    //     $checklistItem = [];
-        
-    //     $checklistItems = \json_decode($content);
-    //     foreach($checklistItems as $postData) {
-
-    //             $item = new ChecklistItem();
-    //             $item->setCategory($postData->category);
-    //             $item->setText($postData->text);
-                
-    //             $checklistItem[] = $item;
-    //     }  
-
-    //     return $checklistItem;
-    // }
+        $postData = \json_decode($content);
+    
+        $checklistItem = new ChecklistItem();
+        $checklistItem->setCategory($postData->category);
+        $checklistItem->setText($postData->text);
+    
+        return $checklistItem;
+    }
 }

@@ -19,9 +19,13 @@ class UserChecklistItemsRepository extends ServiceEntityRepository
         parent::__construct($registry, UserChecklistItems::class);
     }
 
-    public function save(UserChecklistItem $userChecklistItem): UserChecklistItem  {
-        $this->_em->persist($userChecklistItem);
-        $this->_em->flush();
-        return $userChecklistItem;
+    public function save(UserChecklistItems $userChecklistItems): UserChecklistItems  {
+        $this->_em->persist($userChecklistItems);
+        return $userChecklistItems;
+    }
+
+    public function flushToDatabase(UserChecklistItems $userChecklistItems): UserChecklistItems  {
+        $this->_em->flush($userChecklistItems);
+        return $userChecklistItems;
     }
 }

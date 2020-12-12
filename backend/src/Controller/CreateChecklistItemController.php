@@ -4,31 +4,30 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Service\AuthenticationService;
-use App\Serializer\ChecklistItemSerializer;
 use App\Repository\ChecklistItemRepository;
+use App\Serializer\ChecklistItemSerializer;
+use App\Service\AuthenticationService;
 
-class ChecklistItemController extends AbstractController
+class CreateChecklistItemController extends AbstractController
 {
     /**
      * @Route("/checklist-item", methods={"Post"})
      */
-    public function addChecklistItem(
+    public function createChecklistItem(
         Request $request,
-        ChecklistItemRepository $ChecklistItemRepository, 
-        ChecklistItemSerializer $ChecklistItemSerializer,
+        ChecklistItemRepository $repository, 
+        ChecklistItemSerializer $serializer,
         AuthenticationService $authentication
     ): JsonResponse {
 
-        $checklistItem = $ChecklistItemSerializer->deserialize($request->getContent());
+        $checklistItem = $serializer->deserialize($request->getContent());
         
-        $ChecklistItemRepository->save($checklistItem);
+        $repository->save($checklistItem);
 
         return new JsonResponse(
-            $ChecklistItemSerializer->serialize($checklistItem),
+            $serializer->serialize($checklistItem),
             JsonResponse::HTTP_OK,
             [],
             true

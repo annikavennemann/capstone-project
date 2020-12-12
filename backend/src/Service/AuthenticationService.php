@@ -24,16 +24,15 @@ class AuthenticationService {
         return !is_null($token) && $now < $token->getValidUntil();
     }
 
-    public function validateUser(Request $request)
-    {
+    public function validateUser(Request $request): object {
         $authHeader = $request->headers->get('Authorization');
         $currentToken = substr($authHeader, strpos($authHeader, ' ')+1);
-
-        if (!$currentToken) {
+        
+        if (!$currentToken) { 
             return null;
         }
 
-        $foundToken = $this->repository->findOneBy(['token' => $currentToken]);
+        $foundToken = $this->repository->findOneBy(['value' => $currentToken]);
 
         if (!$foundToken) {
             return null;

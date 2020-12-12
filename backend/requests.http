@@ -3,15 +3,15 @@
 
 ###
 GET {{baseUrl}}/user
-Authorization: Bearer 5fce699fef12c7.48472322
+Authorization: Bearer 5fd356b2c22796.90126197
 
 ###
 POST {{baseUrl}}/user
 
 {
-    "firstname": "Katha",
-    "lastname": "Schneider",
-    "email": "katha@ohhh.org",
+    "firstname": "A",
+    "lastname": "V",
+    "email": "a@ohhh.org",
     "password": "helloohhh",
     "startdate": "01-01-2021"
 }
@@ -20,7 +20,7 @@ POST {{baseUrl}}/user
 Post {{baseUrl}}/login
 
 {
-    "email": "katha@ohhh.org",
+    "email": "a@ohhh.org",
     "password": "helloohhh"
 }
 
