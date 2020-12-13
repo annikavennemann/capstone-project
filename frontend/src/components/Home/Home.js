@@ -4,7 +4,6 @@ import ReactPlayer from 'react-player'
 import styled from 'styled-components/macro'
 import welcomePageHeader from '../../images/welcomePageHeader.svg'
 import nextIcon from '../../images/nextIcon.svg'
-import infoIcon from '../../images/info.svg'
 import valueAmbitious from '../../images/valueAmbitious.png'
 import valueRespect from '../../images/valueRespect.png'
 import valueDiverse from '../../images/valueDiverse.png'
@@ -14,11 +13,14 @@ import phoneIcon from '../../images/phoneIcon.svg'
 import checklistIconLight from '../../images/checklistIconLight.svg'
 import { useEffect, useState } from 'react'
 import Navigation from '../Navigation/NavBar'
+import ToggleInfoBox from './ToggleInfoBox'
 
 export default function Home() {
     
     const [userData, setUserData] = useState([])
     let userName = ''
+
+    const [isInfoShown, setIsInfoShown] = useState(false)
 
     function sleep(milliseconds) {
         return new Promise(resolve => setTimeout(resolve, milliseconds));
@@ -29,7 +31,7 @@ export default function Home() {
     })
 
     async function waiting() {
-        await sleep(3000);
+        await sleep(1000);
         setUserData(loadLocally("authenticationToken"))
        }
         
@@ -53,18 +55,20 @@ export default function Home() {
                 <p>Welcome to Ohhh - it's nice to have you with us!</p>
                 <img src={nextIcon} alt=""/>
             </WelcomeBox>
+            
+            <ToggleInfoBox
+                defaultText="&#9432; What is Ohhhboarding?"
+                activeText="Ohhhboarding should help you to get to know us and our vision a bit better. At the same time, it gives you an overview of the upcoming tasks for the next few weeks, so that your start with us will be fantastic. &#x2B06; "
+                isActive={isInfoShown}
+                onClick={() => setIsInfoShown(!isInfoShown)}
+            />
 
-            <InfoBox>
-                <img src={infoIcon} alt=""/>
-                <p>What is Ohhhboarding?</p>
-            </InfoBox>
-
-                <ReactPlayer 
-                    url='https://www.youtube.com/watch?v=BHYr395khcs' 
-                    width='100%'
-                    height='auto'
-                    box-shadow='4px 4px 18px hsla(0, 0%, 0%, 0.3)'
-                />
+            <ReactPlayer 
+                url='https://www.youtube.com/watch?v=LxOYPsA-wsA&feature=emb_logo' 
+                width='100%'
+                height='auto'
+                box-shadow='4px 4px 18px hsla(0, 0%, 0%, 0.3)'
+            />
             
             <h3>Who we aspire to be</h3>
             <Vision>
@@ -155,7 +159,8 @@ const Headline = styled.h2`
 const WelcomeBox = styled.div`
     margin: 1em 0 0 0;
     padding: 1.5em 2em;
-    box-shadow: 4px 4px 18px hsla(0, 0%, 0%, 0.3);
+    background: linear-gradient(145deg, #f2f2f2, #ffffff);
+    box-shadow:  8px 8px 16px #ededed, -8px -8px 16px #ffffff;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -170,21 +175,6 @@ const WelcomeBox = styled.div`
     }
 `
 
-const InfoBox = styled.div`
-    display: flex;
-    justify-content: center;
-    font-size: 0.8em;
-    color: #029FE3;
-    margin-bottom: 2em;
-
-    img {
-        padding-right: 0.6em;
-    }
-
-    p {
-        font-size: 12px;
-    }
-`
 const Vision = styled.ul`
     display: flex;
     flex-direction: column;
@@ -273,7 +263,8 @@ const WayOfWorking = styled.ul`
 const BoxNext = styled.div`
     margin: 2em 0;
     padding: 0.5em 0 0.7em;
-    box-shadow: 4px 4px 18px hsla(0, 0%, 0%, 0.3);
+    background: linear-gradient(145deg, #f2f2f2, #ffffff);
+    box-shadow:  8px 8px 16px #ededed, -8px -8px 16px #ffffff;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
