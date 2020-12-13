@@ -12,6 +12,7 @@ export default createGlobalStyle`
         font-size: 17px;
         font-weight: lighter;
         color: #6A6A6A;
+        background-color: #FCFCFC;
     }
 
     h3 {
@@ -19,7 +20,10 @@ export default createGlobalStyle`
         text-align: center;
         color: #F5BAC4;
     }
-    
+
+    :root {
+        --ohhh-pink: #F5BAC4;
+    }
 `
 
 
