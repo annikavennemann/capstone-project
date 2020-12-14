@@ -2,11 +2,13 @@ import styled from 'styled-components/macro'
 import Navigation from "../Navigation/NavBar";
 import { useState, useEffect } from 'react'
 import { getChecklist } from '../../service/getChecklist'
-import saveLocally from '../../lib/saveLocally'
 import Todo from './Todo';
+import { updateChecklist } from '../../service/updateChecklist';
 
 export default function Checklist() {
     const [checklist, setChecklist] = useState([])
+
+    console.log(checklist)
     
 
     useEffect(() => {
@@ -15,10 +17,11 @@ export default function Checklist() {
         .catch(error => console.log(error))
     }, [])
 
-    useEffect(() => {
-        saveLocally("todos", checklist);
-    }, [checklist])
 
+    useEffect(() => {
+        updateChecklist(checklist, checklist.id)
+        .then((res) => console.log(res))
+    }, [checklist])
 
 
     const day = checklist.filter(checklist =>
@@ -39,7 +42,6 @@ export default function Checklist() {
 
     function toggleTodo(index) {
         const todo = checklist[index];
-    
         setChecklist([
             ...checklist.slice(0, index),
             { ...todo, checked: !todo.checked },

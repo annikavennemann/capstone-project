@@ -2,14 +2,12 @@ import styled from 'styled-components/macro'
 
 export default function Todo({ text, checked, onToggleTodo }) {
 
-    
-
     return (
         <Label> 
             <input 
                 type="checkbox"
                 name="toDo"
-                isChecked={checked}
+                checked={checked}
                 onChange={onToggleTodo}/>
             <span>{text}</span>
         </Label>
