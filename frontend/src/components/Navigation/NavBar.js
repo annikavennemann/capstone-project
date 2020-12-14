@@ -10,24 +10,20 @@ export default function Navigation() {
     return (
         <NavStyled>
             <NavLinkStyled to="/home">
-                <div>
-                    <BiHomeHeart color='#c4c4c4' size='30px'/>
-                </div>
+                <BiHomeHeart fill='#c4c4c4' size='40px'/>
             </NavLinkStyled>
 
             <NavLinkStyled to="/checklist">
-                <div>
-                    <ChecklistIcon color='#c4c4c4' size='30px'/>
-                </div>
+                <BiListCheck fill='#c4c4c4' size='40px'/>
             </NavLinkStyled>
             
-            <div>
-                <BsPeopleFill color='#c4c4c4' size='30px'/>
-            </div>
+            <NavLinkStyled to="#">
+                <BsPeopleFill fill='#c4c4c4' size='40px'/>
+            </NavLinkStyled>
 
-            <div>
-                <IoPersonCircleOutline color='#c4c4c4' size='30px'/>
-            </div>
+            <NavLinkStyled to="#">
+                <IoPersonCircleOutline fill='#c4c4c4' size='40px'/>
+            </NavLinkStyled>
             
 
         </NavStyled>
@@ -44,33 +40,21 @@ const NavStyled = styled.nav`
     justify-content: space-between;
     background-color: #fcfcfc;
     box-shadow: 4px 4px 18px hsla(0, 0%, 0%, 0.3);
-    border-radius: 10px;
     z-index: 10;
-
-    div {
-        width: 2.5em;
-        height: 2.5em;
-        border-radius: 40%;
-        background: linear-gradient(145deg, #e3e3e3, #ffffff);
-        box-shadow:  8px 8px 16px #ededed, -8px -8px 16px #ffffff;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 `
 
 const NavLinkStyled = styled(NavLink)`
-    &.active {
-        BiListCheck {
-            
-        }
-    }
-`
-const ChecklistIcon = styled(BiListCheck)`
-    color: c4c4c4;
+  svg {
+    padding: 0.3em;
+    border-radius: 40%;
+    background: linear-gradient(145deg, #e3e3e3, #ffffff);
+    box-shadow:  8px 8px 16px #ededed, -8px -8px 16px #ffffff;
+  }
 
-    &.active {
-        color: var(--ohhh-pink);
+    &:active {
+        svg {
+            fill: hotpink;
+        }
     }
 
 `

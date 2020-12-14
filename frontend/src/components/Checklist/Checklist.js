@@ -29,8 +29,6 @@ export default function Checklist() {
         checklist.category.includes('100days')
     )
 
-    console.log(checklist)
-
     return (
         <>
             <Background>

@@ -3,17 +3,16 @@ import loadLocally from '../../lib/loadLocally'
 import ReactPlayer from 'react-player'
 import styled from 'styled-components/macro'
 import welcomePageHeader from '../../images/welcomePageHeader.svg'
-import nextIcon from '../../images/nextIcon.svg'
 import valueAmbitious from '../../images/valueAmbitious.png'
 import valueRespect from '../../images/valueRespect.png'
 import valueDiverse from '../../images/valueDiverse.png'
 import valueVisonary from '../../images/valueVisonary.png'
 import mailIcon from '../../images/mailIcon.svg'
 import phoneIcon from '../../images/phoneIcon.svg'
-import checklistIconLight from '../../images/checklistIconLight.svg'
 import { useEffect, useState } from 'react'
 import Navigation from '../Navigation/NavBar'
 import ToggleInfoBox from './ToggleInfoBox'
+import WelcomeBox from './WelcomeBox'
 
 export default function Home() {
     
@@ -35,13 +34,13 @@ export default function Home() {
         setUserData(loadLocally("authenticationToken"))
        }
         
-        try {
-            userName = userData.userName
-          } 
-           catch (error) {
-             console.log('still loading')
-             userName = "... "
-          }
+    try {
+        userName = userData.userName
+        } 
+        catch (error) {
+            console.log('still loading')
+            userName = "... "
+        }
 
     return (
         <>
@@ -51,10 +50,7 @@ export default function Home() {
         <Wrapper>
             <Headline>Hi <span>{userName}!</span></Headline>
 
-            <WelcomeBox>
-                <p>Welcome to Ohhh - it's nice to have you with us!</p>
-                <img src={nextIcon} alt=""/>
-            </WelcomeBox>
+            <WelcomeBox />
             
             <ToggleInfoBox
                 defaultText="&#9432; What is Ohhhboarding?"
@@ -64,7 +60,7 @@ export default function Home() {
             />
 
             <ReactPlayer 
-                url='https://www.youtube.com/watch?v=LxOYPsA-wsA&feature=emb_logo' 
+                url='https://www.youtube.com/watch?v=JvJZOYTuzNA&feature=youtu.be' 
                 width='100%'
                 height='auto'
                 box-shadow='4px 4px 18px hsla(0, 0%, 0%, 0.3)'
@@ -86,8 +82,8 @@ export default function Home() {
                 <img src={valueRespect} alt="colorful bus on christopher street day"/>
                 <img src={valueDiverse} alt="colorfully branded faq you book and mate mate"/>
                 <img src={valueVisonary} alt="two people at a podium discussion"/>
-
             </ValueWrapper>
+
             <Wrapper>
                 <div>
                     <BlueHeadline>Our way of working</BlueHeadline>
@@ -102,7 +98,6 @@ export default function Home() {
                 <BoxNext>
                     <h3>Ohhh, what's next?</h3>
                     <p>To give you an overview of upcoming tasks, we prepared a personal checklist for you.</p>
-                    <img src={checklistIconLight} alt=""/>
                 </BoxNext>
 
                 
@@ -154,25 +149,6 @@ const Headline = styled.h2`
         font-weight: 300;
         color: #707070
     }  
-`
-
-const WelcomeBox = styled.div`
-    margin: 1em 0 0 0;
-    padding: 1.5em 2em;
-    background: linear-gradient(145deg, #f2f2f2, #ffffff);
-    box-shadow:  8px 8px 16px #ededed, -8px -8px 16px #ffffff;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-
-    p {
-        text-align: center;
-        font-size: 1.2rem;
-    }
-
-    img {
-        align-self: flex-end;
-    }
 `
 
 const Vision = styled.ul`
@@ -278,11 +254,6 @@ const BoxNext = styled.div`
         margin: 0;
         text-align: center;
         font-size: 20px;
-    }
-
-    img {
-        padding: 0.5em 0.5em 0 0;
-        align-self: flex-end;
     }
 `
 
