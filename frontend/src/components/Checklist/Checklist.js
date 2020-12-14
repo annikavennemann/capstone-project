@@ -2,16 +2,24 @@ import styled from 'styled-components/macro'
 import Navigation from "../Navigation/NavBar";
 import { useState, useEffect } from 'react'
 import { getChecklist } from '../../service/getChecklist'
+import saveLocally from '../../lib/saveLocally'
+import Todo from './Todo';
 
 export default function Checklist() {
     const [checklist, setChecklist] = useState([])
-
+    
 
     useEffect(() => {
         getChecklist()
         .then(data => setChecklist(data))
         .catch(error => console.log(error))
     }, [])
+
+    useEffect(() => {
+        saveLocally("todos", checklist);
+    }, [checklist])
+
+
 
     const day = checklist.filter(checklist =>
         checklist.category.includes('day')
@@ -29,49 +37,68 @@ export default function Checklist() {
         checklist.category.includes('100days')
     )
 
+    function toggleTodo(index) {
+        const todo = checklist[index];
+    
+        setChecklist([
+            ...checklist.slice(0, index),
+            { ...todo, checked: !todo.checked },
+            ...checklist.slice(index + 1),
+        ]);
+    }
+
     return (
         <>
             <Background>
                 <Headline>My Checklists</Headline>
+                    
                 
                 <Wrapper>
                     <ChecklistTitle>First day</ChecklistTitle>
-                    {day.map((item) => 
-                        <Label key={item.id} > 
-                            <input type="checkbox" name="item1" value={item.isChecked} />
-                            <p>{item.text}</p>
-                        </Label>
-                    )}
+                    {day.map(({ text, checked, id }, index) => (
+                        <Todo
+                            onToggleTodo={() => toggleTodo(index)}
+                            key={id}
+                            text={text}
+                            isChecked={checked}
+                        />
+                    ))}
                 </Wrapper>
 
                 <Wrapper>
                 <ChecklistTitle>First Week</ChecklistTitle>
-                {week.map((item) => 
-                    <Label key={item.id} > 
-                        <input type="checkbox" name="item1" value={item.isChecked} />
-                        <p>{item.text}</p>
-                    </Label>
-                )}
+                    {week.map(({ text, checked, id }, index) => (
+                        <Todo
+                            onToggleTodo={() => toggleTodo(index)}
+                            key={id}
+                            text={text}
+                            isChecked={checked}
+                        />
+                    ))}
                 </Wrapper>
                 
                 <Wrapper>
                 <ChecklistTitle>First Month</ChecklistTitle>
-                {month.map((item) => 
-                    <Label key={item.id} > 
-                        <input type="checkbox" name="item1" value={item.isChecked} />
-                        <p>{item.text}</p>
-                    </Label>
-                )}
+                    {month.map(({ text, checked, id }, index) => (
+                        <Todo
+                            onToggleTodo={() => toggleTodo(index)}
+                            key={id}
+                            text={text}
+                            isChecked={checked}
+                        />
+                    ))}
                 </Wrapper>
                 
                 <Wrapper>
                 <ChecklistTitle>First 100 Days</ChecklistTitle>
-                {hundredDays.map((item) => 
-                    <Label key={item.id} > 
-                        <input type="checkbox" name="item1" value={item.isChecked} />
-                        <p>{item.text}</p>
-                    </Label>
-                )}
+                    {hundredDays.map(({ text, checked, id }, index) => (
+                        <Todo
+                            onToggleTodo={() => toggleTodo(index)}
+                            key={id}
+                            text={text}
+                            isChecked={checked}
+                        />
+                    ))}
                 </Wrapper>
             </Background>
             <Navigation />
@@ -105,17 +132,4 @@ const ChecklistTitle = styled.h3`
     font-size: 20px;
     font-weight: lighter;
     color: var(--ohhh-pink)
-`
-
-const Label = styled.label`
-    display: flex;
-    align-items: baseline;
-
-    p {
-        margin: 0.3em 0.5em;
-        padding-bottom: 0.5em;
-        border-bottom: 0.5px solid #ececec;
-        width: 300px;
-        font-size: 16px;
-    }
 `

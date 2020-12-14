@@ -23,6 +23,7 @@ export default createGlobalStyle`
 
     :root {
         --ohhh-pink: #F5BAC4;
+        --ohhh-blue: #029FE3;
     }
 `
 

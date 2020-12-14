@@ -198,7 +198,7 @@ const ValueWrapper = styled.div`
 `
 
 const BlueHeadline = styled.h3`
-    color: #029FE3;
+    color: var(--ohhh-blue);
     font-size: 24px;
 `
 
