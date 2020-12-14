@@ -9,12 +9,12 @@ import { BsPeopleFill } from "react-icons/bs";
 export default function Navigation() {
     return (
         <NavStyled>
-            <NavLinkStyled to="/home">
-                <BiHomeHeart fill='#c4c4c4' size='40px'/>
+            <NavLinkStyled to="/home" activeClassName="selected">
+                <BiHomeHeart size='40px'/>
             </NavLinkStyled>
 
-            <NavLinkStyled to="/checklist">
-                <BiListCheck fill='#c4c4c4' size='40px'/>
+            <NavLinkStyled to="/checklist" activeClassName="selected">
+                <BiListCheck size='40px'/>
             </NavLinkStyled>
             
             <NavLinkStyled to="#">
@@ -43,18 +43,16 @@ const NavStyled = styled.nav`
     z-index: 10;
 `
 
-const NavLinkStyled = styled(NavLink)`
-  svg {
-    padding: 0.3em;
-    border-radius: 40%;
-    background: linear-gradient(145deg, #e3e3e3, #ffffff);
-    box-shadow:  8px 8px 16px #ededed, -8px -8px 16px #ffffff;
-  }
-
-    &:active {
-        svg {
-            fill: hotpink;
-        }
+const NavLinkStyled = styled(NavLink).attrs((props) => props.activeClassName)`
+    svg {
+        padding: 0.3em;
+        border-radius: 40%;
+        background: linear-gradient(145deg, #e3e3e3, #ffffff);
+        box-shadow: 8px 8px 16px #ededed, -8px -8px 16px #ffffff;
+        fill: #c4c4c4;
     }
-
+    
+    &.${(props) => props.activeClassName} > svg {
+        fill: var(--ohhh-blue);
+    }
 `
