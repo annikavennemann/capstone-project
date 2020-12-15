@@ -11,6 +11,7 @@ class PersonalChecklistSerializer {
     private function setArray($checklist): object {
         
         $this->checklistItemsAsArray[] = [
+            'userChecklistItemId' => $checklist->getId(),
             'id' => $checklist->getChecklistItem()->getId(),
             'category' => $checklist->getChecklistItem()->getCategory(),
             'text' => $checklist->getChecklistItem()->getText(),
@@ -29,6 +30,6 @@ class PersonalChecklistSerializer {
             $this->setArray($checklistItems);
         }
         
-        return \json_encode($this->checklistItemsAsArray);
+        return json_encode($this->checklistItemsAsArray);
     }
 }

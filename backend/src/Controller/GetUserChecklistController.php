@@ -12,7 +12,10 @@ use App\Repository\UserChecklistItemsRepository;
 use App\Serializer\UserSerializer;
 use App\Serializer\UserChecklistSerializer;
 use App\Serializer\PersonalChecklistSerializer;
+use App\Serializer\UpdateChecklistSerializer;
 use App\Entity\User;
+
+use App\Repository\ChecklistItemRepository;
 
 
 class GetUserChecklistController extends AbstractController {
@@ -45,5 +48,5 @@ class GetUserChecklistController extends AbstractController {
             [],
             true
         );
-     }
+    }
 }
