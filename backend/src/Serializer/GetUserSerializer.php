@@ -5,6 +5,7 @@ namespace App\Serializer;
 use App\Entity\User;
 
 class GetUserSerializer {
+    private array $usersAsArray = [];
 
     private function setArray($users): object {
         

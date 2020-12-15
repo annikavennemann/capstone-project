@@ -8,7 +8,8 @@ use App\Entity\ChecklistItem;
 
 
 class ChecklistItemSerializer {
-    
+    private array $elementAsArray = [];
+
     private function userArray($element): object {
 
         $this->elementAsArray[] = [
