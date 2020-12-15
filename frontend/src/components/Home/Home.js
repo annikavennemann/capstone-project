@@ -3,22 +3,23 @@ import loadLocally from '../../lib/loadLocally'
 import ReactPlayer from 'react-player'
 import styled from 'styled-components/macro'
 import welcomePageHeader from '../../images/welcomePageHeader.svg'
-import nextIcon from '../../images/nextIcon.svg'
-import infoIcon from '../../images/info.svg'
 import valueAmbitious from '../../images/valueAmbitious.png'
 import valueRespect from '../../images/valueRespect.png'
 import valueDiverse from '../../images/valueDiverse.png'
 import valueVisonary from '../../images/valueVisonary.png'
 import mailIcon from '../../images/mailIcon.svg'
 import phoneIcon from '../../images/phoneIcon.svg'
-import checklistIconLight from '../../images/checklistIconLight.svg'
 import { useEffect, useState } from 'react'
 import Navigation from '../Navigation/NavBar'
+import ToggleInfoBox from './ToggleInfoBox'
+import WelcomeBox from './WelcomeBox'
 
 export default function Home() {
     
     const [userData, setUserData] = useState([])
     let userName = ''
+
+    const [isInfoShown, setIsInfoShown] = useState(false)
 
     function sleep(milliseconds) {
         return new Promise(resolve => setTimeout(resolve, milliseconds));
@@ -29,17 +30,17 @@ export default function Home() {
     })
 
     async function waiting() {
-        await sleep(3000);
+        await sleep(1000);
         setUserData(loadLocally("authenticationToken"))
        }
         
-        try {
-            userName = userData.userName
-          } 
-           catch (error) {
-             console.log('still loading')
-             userName = "... "
-          }
+    try {
+        userName = userData.userName
+        } 
+        catch (error) {
+            console.log('still loading')
+            userName = "... "
+        }
 
     return (
         <>
@@ -49,22 +50,21 @@ export default function Home() {
         <Wrapper>
             <Headline>Hi <span>{userName}!</span></Headline>
 
-            <WelcomeBox>
-                <p>Welcome to Ohhh - it's nice to have you with us!</p>
-                <img src={nextIcon} alt=""/>
-            </WelcomeBox>
+            <WelcomeBox />
+            
+            <ToggleInfoBox
+                defaultText="&#9432; What is Ohhhboarding?"
+                activeText="Ohhhboarding should help you to get to know us and our vision a bit better. At the same time, it gives you an overview of the upcoming tasks for the next few weeks, so that your start with us will be fantastic. &#x2B06; "
+                isActive={isInfoShown}
+                onClick={() => setIsInfoShown(!isInfoShown)}
+            />
 
-            <InfoBox>
-                <img src={infoIcon} alt=""/>
-                <p>What is Ohhhboarding?</p>
-            </InfoBox>
-
-                <ReactPlayer 
-                    url='https://www.youtube.com/watch?v=BHYr395khcs' 
-                    width='100%'
-                    height='auto'
-                    box-shadow='4px 4px 18px hsla(0, 0%, 0%, 0.3)'
-                />
+            <ReactPlayer 
+                url='https://www.youtube.com/watch?v=JvJZOYTuzNA&feature=youtu.be' 
+                width='100%'
+                height='auto'
+                box-shadow='4px 4px 18px hsla(0, 0%, 0%, 0.3)'
+            />
             
             <h3>Who we aspire to be</h3>
             <Vision>
@@ -82,8 +82,8 @@ export default function Home() {
                 <img src={valueRespect} alt="colorful bus on christopher street day"/>
                 <img src={valueDiverse} alt="colorfully branded faq you book and mate mate"/>
                 <img src={valueVisonary} alt="two people at a podium discussion"/>
-
             </ValueWrapper>
+
             <Wrapper>
                 <div>
                     <BlueHeadline>Our way of working</BlueHeadline>
@@ -98,7 +98,6 @@ export default function Home() {
                 <BoxNext>
                     <h3>Ohhh, what's next?</h3>
                     <p>To give you an overview of upcoming tasks, we prepared a personal checklist for you.</p>
-                    <img src={checklistIconLight} alt=""/>
                 </BoxNext>
 
                 
@@ -152,39 +151,6 @@ const Headline = styled.h2`
     }  
 `
 
-const WelcomeBox = styled.div`
-    margin: 1em 0 0 0;
-    padding: 1.5em 2em;
-    box-shadow: 4px 4px 18px hsla(0, 0%, 0%, 0.3);
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-
-    p {
-        text-align: center;
-        font-size: 1.2rem;
-    }
-
-    img {
-        align-self: flex-end;
-    }
-`
-
-const InfoBox = styled.div`
-    display: flex;
-    justify-content: center;
-    font-size: 0.8em;
-    color: #029FE3;
-    margin-bottom: 2em;
-
-    img {
-        padding-right: 0.6em;
-    }
-
-    p {
-        font-size: 12px;
-    }
-`
 const Vision = styled.ul`
     display: flex;
     flex-direction: column;
@@ -232,7 +198,7 @@ const ValueWrapper = styled.div`
 `
 
 const BlueHeadline = styled.h3`
-    color: #029FE3;
+    color: var(--ohhh-blue);
     font-size: 24px;
 `
 
@@ -273,7 +239,8 @@ const WayOfWorking = styled.ul`
 const BoxNext = styled.div`
     margin: 2em 0;
     padding: 0.5em 0 0.7em;
-    box-shadow: 4px 4px 18px hsla(0, 0%, 0%, 0.3);
+    background: linear-gradient(145deg, #f2f2f2, #ffffff);
+    box-shadow:  8px 8px 16px #ededed, -8px -8px 16px #ffffff;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -287,11 +254,6 @@ const BoxNext = styled.div`
         margin: 0;
         text-align: center;
         font-size: 20px;
-    }
-
-    img {
-        padding: 0.5em 0.5em 0 0;
-        align-self: flex-end;
     }
 `
 

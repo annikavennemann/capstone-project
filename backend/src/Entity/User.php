@@ -175,9 +175,11 @@ class User
 
     public function removeUserChecklistItem(UserChecklistItems $userChecklistItem): self
     {
-        if ($this->userChecklistItems->removeElement($userChecklistItem) && $userChecklistItems->getUser() === $this) {
-            $userChecklistItem->setUser(null);
+        if ($this->userChecklistItems->removeElement($userChecklistItem)) {
+            if ($userChecklistItem->getUser() === $this) {
+                $userChecklistItem->setUser(null);
         }
+    }
 
         return $this;
     }

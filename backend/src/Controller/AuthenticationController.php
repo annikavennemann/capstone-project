@@ -11,6 +11,7 @@ use App\Repository\TokenRepository;
 use App\Serializer\TokenSerializer;
 use App\Entity\User;
 use App\Entity\Token;
+use App\Service\AuthenticationService;
 
 class AuthenticationController extends AbstractController
 {
@@ -21,7 +22,8 @@ class AuthenticationController extends AbstractController
         Request $request,
         UserRepository $userRepository,
         TokenRepository $tokenRepository,
-        TokenSerializer $tokenSerializer
+        TokenSerializer $tokenSerializer,
+        AuthenticationService $authentication
         ): JsonResponse {
         
         $post = json_decode($request->getContent(), true);
@@ -32,6 +34,7 @@ class AuthenticationController extends AbstractController
         }
 
         $token = $tokenRepository->create($user);
+        $authentication->deleteInvalidToken($user);
         
         return new JsonResponse(
             $tokenSerializer->serialize($token),

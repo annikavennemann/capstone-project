@@ -12,11 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ChecklistItem
 {
-
-    const TYPE_DAY = "day";
-    const TYPE_WEEK = "week";
-    const TYPE_MONTH = "month";
-    const TYPE_ONE_HUNDRED_DAYS = "100days";
+    const CATEGORY_DAY = "day";
+    const CATEGORY_WEEK = "week";
+    const CATEGORY_MONTH = "month";
+    const CATEGORY_ONE_HUNDRED_DAYS = "100days";
 
     /**
      * @ORM\Id
@@ -38,7 +37,7 @@ class ChecklistItem
     /**
      * @ORM\OneToMany(targetEntity=UserChecklistItems::class, mappedBy="checklistItem")
      */
-    private $userChecklistItems;
+    protected $userChecklistItems;
 
     public function __construct()
     {
@@ -57,6 +56,14 @@ class ChecklistItem
 
     public function setCategory(string $category): self
     {
+        if (!in_array($category, array(
+            self::CATEGORY_DAY,
+            self::CATEGORY_WEEK,
+            self::CATEGORY_MONTH,
+            self::CATEGORY_ONE_HUNDRED_DAYS))) {
+            throw new \InvalidArgumentException($category . "is not a valid Checklist-category.");
+        }
+
         $this->category = $category;
 
         return $this;

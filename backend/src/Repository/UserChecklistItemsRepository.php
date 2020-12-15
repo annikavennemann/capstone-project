@@ -19,32 +19,13 @@ class UserChecklistItemsRepository extends ServiceEntityRepository
         parent::__construct($registry, UserChecklistItems::class);
     }
 
-    // /**
-    //  * @return UserChecklistItems[] Returns an array of UserChecklistItems objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    public function save(UserChecklistItems $userChecklistItems): UserChecklistItems  {
+        $this->_em->persist($userChecklistItems);
+        return $userChecklistItems;
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?UserChecklistItems
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    public function flushToDatabase(UserChecklistItems $userChecklistItems): UserChecklistItems  {
+        $this->_em->flush($userChecklistItems);
+        return $userChecklistItems;
     }
-    */
 }

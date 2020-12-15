@@ -1,17 +1,12 @@
 @baseUrl = http://onboarding.local
 
-
-###
-GET {{baseUrl}}/user
-Authorization: Bearer 5fc64ad377b8c8.47900751
-
 ###
 POST {{baseUrl}}/user
 
 {
-    "firstname": "Annika",
-    "lastname": "Vennemann",
-    "email": "annivenne@ohhh.org",
+    "firstname": "Anni",
+    "lastname": "Venne",
+    "email": "anni@ohhh.org",
     "password": "helloohhh",
     "startdate": "01-01-2021"
 }
@@ -20,9 +15,16 @@ POST {{baseUrl}}/user
 Post {{baseUrl}}/login
 
 {
-    "email": "annivenne@ohhh.org",
+    "email": "anni@ohhh.org",
     "password": "helloohhh"
 }
 
+###
+GET {{baseUrl}}/user
+Authorization: Bearer 5fd87b8d664567.74956045
+
 
 ###
+GET {{baseUrl}}/checklist
+Authorization: Bearer 5fd87b8d664567.74956045
+
