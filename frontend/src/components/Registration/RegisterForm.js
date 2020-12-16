@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 import { useHistory } from "react-router-dom"
 import signUpHeader from '../../images/signUpHeader.svg'
 import signUpButton from '../../images/signUpButton.svg'
+import { postUserData } from '../../service/postUserData'
 
 RegisterForm.propTypes = {
     onSubmit: PropTypes.func.isRequired
@@ -157,23 +158,8 @@ export default function RegisterForm({ onSubmit }) {
                 password: false,
                 startdate: false
             })
-            const myHeaders = new Headers();
-            myHeaders.append('Content-Type', 'application/json');
-        
-            const raw = JSON.stringify(userData);
-            const requestOptions = {
-                method: 'POST',
-                headers: myHeaders,
-                body: raw,
-                redirect: 'follow',
-            }
 
-        const apiBaseUrl = process.env.REACT_APP_API_BASE_URL
-    
-        fetch(`${apiBaseUrl}/create-account`, requestOptions)
-            .then((response) => response.text())
-            .then(result => console.log(result))
-            .catch((error) => console.log('error', error))
+            postUserData(userData)
 
             history.push("/")
             

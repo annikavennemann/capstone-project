@@ -1,5 +1,4 @@
 import loadLocally from '../lib/loadLocally';
-//const baseUrl = 'http://onboarding.local/checklist'
 
 export async function getChecklist() {
   const apiBaseUrl = process.env.REACT_APP_API_BASE_URL
@@ -14,7 +13,6 @@ export async function getChecklist() {
     headers: myHeaders,
     redirect: 'follow',
   }
-  console.log(apiBaseUrl)
 
   try {
     const response = await fetch(`${apiBaseUrl}/checklist`, requestOptions)
@@ -23,10 +21,4 @@ export async function getChecklist() {
   } catch (error) {
     return { error: 'The server is down! :(' }
   }
-
-  
-  // return fetch(`${apiBaseUrl}/checklist`, requestOptions)
-  //     .then(res => res.json())
-
-  
 }
