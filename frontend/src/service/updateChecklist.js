@@ -9,7 +9,7 @@ export async function updateChecklist(checklist, id) {
     myHeaders.append('Content-Type', 'application/json')
     myHeaders.append('Authorization', 'Bearer ' + token.value)
 
-    const raw = JSON.stringify(checklist)
+    const raw = JSON.stringify(checklist) // hier muss new isChecked-value übergeben werden + Item-Id in URL
     const requestOptions = {
         method: 'PUT',
         headers: myHeaders,
