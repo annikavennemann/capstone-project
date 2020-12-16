@@ -1,6 +1,6 @@
 import loadLocally from '../lib/loadLocally';
 
-const baseUrl = 'http:///onboarding.local/checklist'
+const baseUrl = 'http://onboarding.local/checklist'
 
 export async function updateChecklist(checklist, id) {
     

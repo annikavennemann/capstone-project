@@ -70,8 +70,10 @@ export default function Login() {
             body: raw,
             redirect: 'follow',
         };
+
+        const apiBaseUrl = process.env.REACT_APP_API_BASE_URL
     
-        fetch('http://onboarding.local/login', requestOptions)
+        fetch(`${apiBaseUrl}/login`, requestOptions)
             .then((response) => response.text())
             .then(result => saveLocally("authenticationToken", result))
             .catch((error) => console.log('error', error));
