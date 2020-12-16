@@ -15,8 +15,6 @@ use App\Serializer\PersonalChecklistSerializer;
 use App\Serializer\UpdateChecklistSerializer;
 use App\Entity\User;
 
-use App\Repository\ChecklistItemRepository;
-
 
 class GetUserChecklistController extends AbstractController {
     
@@ -27,7 +25,6 @@ class GetUserChecklistController extends AbstractController {
         Request $request, 
         UserRepository $userRepository,
         AuthenticationService $authenticationService,
-        UserChecklistItemsRepository $userChecklistItemsRepository, 
         UserSerializer $userSerializer,
         PersonalChecklistSerializer $personalChecklistSerializer
         ): JsonResponse 

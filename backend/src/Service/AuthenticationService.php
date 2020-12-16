@@ -24,7 +24,7 @@ class AuthenticationService {
         return !is_null($token) && $now < $token->getValidUntil();
     }
 
-    public function validateUser(Request $request): mixed {
+    public function validateUser(Request $request): object {
         $authHeader = $request->headers->get('Authorization');
         $currentToken = substr($authHeader, strpos($authHeader, ' ')+1);
         

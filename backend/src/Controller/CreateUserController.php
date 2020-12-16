@@ -35,6 +35,8 @@ class CreateUserController extends AbstractController
 
             $checklist = $checklistItemRepository->findAll();
             
+            //@TODO: in Service auslagern
+            
             foreach ($checklist as $checklistItem) {
                 $userChecklistItem = new UserChecklistItems();
                 $userChecklistItem->setUser($user);

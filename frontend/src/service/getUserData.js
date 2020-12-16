@@ -1,4 +1,6 @@
 export default function getUserData() {
-    return fetch('http://onboarding.local/user')
+    
+  const apiBaseUrl = process.env.REACT_APP_API_BASE_URL
+  return fetch(`${apiBaseUrl}/user`)
       .then(res => res.json())
   }

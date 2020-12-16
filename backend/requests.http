@@ -4,9 +4,9 @@
 POST {{baseUrl}}/user
 
 {
-    "firstname": "Anni",
-    "lastname": "Venne",
-    "email": "anni@ohhh.org",
+    "firstname": "Annika",
+    "lastname": "Vennemann",
+    "email": "annika@ohhh.org",
     "password": "helloohhh",
     "startdate": "01-01-2021"
 }
