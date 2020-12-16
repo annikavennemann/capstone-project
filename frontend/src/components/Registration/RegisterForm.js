@@ -168,7 +168,9 @@ export default function RegisterForm({ onSubmit }) {
                 redirect: 'follow',
             }
 
-            fetch('http://onboarding.local/user', requestOptions)
+        const apiBaseUrl = process.env.REACT_APP_API_BASE_URL
+    
+        fetch(`${apiBaseUrl}/create-account`, requestOptions)
             .then((response) => response.text())
             .then(result => console.log(result))
             .catch((error) => console.log('error', error))
