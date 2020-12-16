@@ -23,7 +23,8 @@ class UpdateChecklist extends AbstractController {
         UserChecklistItemsRepository $userChecklistItemsRepository
         ): JsonResponse 
     {
-        
+        //@TODO: in Service auslagern
+            
         $user = $authenticationService->validateUser($request);
 
         if (!$user) {
