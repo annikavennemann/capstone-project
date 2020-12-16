@@ -4,6 +4,7 @@ import saveLocally from '../../lib/saveLocally'
 import styled from 'styled-components/macro'
 import signInHeader from '../../images/signInHeader.svg'
 import signInButton from '../../images/signInButton.svg'
+import OhhhLogo from '../../images/OhhhFoundation.png'
 
 export default function Login() {
     const [loginData, setLoginData] = useState({
@@ -41,7 +42,9 @@ export default function Login() {
               <button onClick={loginUser}><img src={signInButton} alt=""/></button>
             </SignInWrapper>
             
+          <OhhhImg src={OhhhLogo} alt=""/>
           </FormStyled>
+
 
           <FooterStyled>
                 <p>Havn't an account yet?</p>
@@ -94,9 +97,10 @@ const HeaderImg = styled.img`
 
 const FormStyled = styled.form`
   margin: 2em;
-  padding: 4.5em 2em 3.6em;
+  padding: 4.5em 2em 0;
   box-shadow: 4px 4px 18px hsla(0, 0%, 0%, 0.3);
   border-radius: 20px;
+  background-color: #FFFFFF;
 
   input {
     width: 100%;
@@ -125,6 +129,16 @@ const SignInWrapper = styled.div`
     background-color: transparent;
     border: none;
   }
+`
+
+const OhhhImg = styled.img`
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2em 0;
+  background-color: transparent;
+  width: 6em;
+  height: auto;
+  display: block;
 `
 
 const FooterStyled = styled.footer`
