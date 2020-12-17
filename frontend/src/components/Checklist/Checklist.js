@@ -3,7 +3,7 @@ import Navigation from "../Navigation/NavBar";
 import { useState, useEffect } from 'react'
 import { getChecklist } from '../../service/getChecklist'
 import Todo from './Todo';
-import { updateChecklist } from '../../service/updateChecklist';
+//import { updateChecklist } from '../../service/updateChecklist';
 import Ohhhboarding from '../../images/Ohhhboarding.png'
 
 export default function Checklist() {
@@ -18,11 +18,12 @@ export default function Checklist() {
         .catch(error => console.log(error))
     }, [])
 
-
-    useEffect(() => {
-        updateChecklist(checklist, checklist.id)
-        .then((res) => console.log(res))
-    }, [checklist])
+    //@TODO: onClick return userChecklistItemId and new isChecked value
+    
+    // useEffect(() => {
+    //     updateChecklist(checklist, checklist.id)
+    //     .then((res) => console.log(res))
+    // }, [checklist])
 
 
     const day = checklist.filter(checklist =>
