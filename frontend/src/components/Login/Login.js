@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useHistory } from "react-router-dom"
-import saveLocally from '../../lib/saveLocally'
 import styled from 'styled-components/macro'
 import signInHeader from '../../images/signInHeader.svg'
 import signInButton from '../../images/signInButton.svg'
 import OhhhLogo from '../../images/OhhhFoundation.png'
+import { postLogin } from '../../service/postLogin'
 
 export default function Login() {
     const [loginData, setLoginData] = useState({
@@ -62,24 +62,8 @@ export default function Login() {
 
       function loginUser(event) {
         event.preventDefault();
-        const myHeaders = new Headers();
-        myHeaders.append('Content-Type', 'application/json');
-    
-        const raw = JSON.stringify(loginData);
-    
-        const requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow',
-        };
-
-        const apiBaseUrl = process.env.REACT_APP_API_BASE_URL
-    
-        fetch(`${apiBaseUrl}/login`, requestOptions)
-            .then((response) => response.text())
-            .then(result => saveLocally("authenticationToken", result))
-            .catch((error) => console.log('error', error));
+       
+        postLogin(loginData)
 
         // @TODO: if password isnt valid -> send User info
         history.push("/home")

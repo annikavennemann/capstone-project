@@ -113,7 +113,6 @@ export default function RegisterForm({ onSubmit }) {
                             startdate: true
                         })}
                     />
-                    {faltyInputs.startdate && !validInputs.startdate && <span>*Please enter your start date.</span>}
                 </Startdate>
                 
                 <SignUpWrapper>
