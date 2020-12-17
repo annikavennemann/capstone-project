@@ -33,10 +33,10 @@ export default function Navigation() {
 const NavStyled = styled.nav`
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
     display: flex;
-    margin-left: 0;
-    padding: 0.5em 2em;
+    padding: 0.6em 2em;
     justify-content: space-between;
     background-color: #fcfcfc;
     box-shadow: 4px 4px 18px hsla(0, 0%, 0%, 0.3);

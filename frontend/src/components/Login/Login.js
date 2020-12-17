@@ -100,7 +100,6 @@ const FormStyled = styled.form`
   padding: 4.5em 2em 0;
   box-shadow: 4px 4px 18px hsla(0, 0%, 0%, 0.3);
   border-radius: 20px;
-  background-color: #FFFFFF;
 
   input {
     width: 100%;

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { getChecklist } from '../../service/getChecklist'
 import Todo from './Todo';
 import { updateChecklist } from '../../service/updateChecklist';
+import Ohhhboarding from '../../images/Ohhhboarding.png'
 
 export default function Checklist() {
     const [checklist, setChecklist] = useState([])
@@ -52,8 +53,8 @@ export default function Checklist() {
     return (
         <>
             <Background>
-                <Headline>My Checklists</Headline>
-                    
+                <OhhboardingLogo src={Ohhhboarding} alt=""/>
+                <Headline>My Checklists</Headline>  
                 
                 <Wrapper>
                     <ChecklistTitle>First day</ChecklistTitle>
@@ -113,9 +114,16 @@ const Background = styled.div`
     background-color: #f2f2f2
 `
 
+const OhhboardingLogo = styled.img`
+    width: 30%;
+    height: auto;
+    margin: 0.5em;
+    float: right;
+`
+
 const Headline = styled.h2`
     margin: 0;
-    padding: 1em;
+    padding-top: 2em;
     text-align: center;
     font-size: 24px;
     font-weight: lighter;

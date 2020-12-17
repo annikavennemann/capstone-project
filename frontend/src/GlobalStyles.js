@@ -12,17 +12,16 @@ export default createGlobalStyle`
         font-size: 17px;
         font-weight: lighter;
         color: #6A6A6A;
-        background-color: #FCFCFC;
     }
 
     h3 {
         font-size: 24px;
         text-align: center;
-        color: #F5BAC4;
+        color: var(--ohhh-pink);
     }
 
     :root {
-        --ohhh-pink: #F5BAC4;
+        --ohhh-pink: #EDBDC5;
         --ohhh-blue: #029FE3;
     }
 `

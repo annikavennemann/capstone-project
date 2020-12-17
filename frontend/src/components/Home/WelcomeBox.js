@@ -3,6 +3,7 @@ import { useTransition, animated } from 'react-spring'
 import { RiArrowRightSLine } from "react-icons/ri"
 import { RiArrowDownSLine } from "react-icons/ri"
 import styled from 'styled-components/macro'
+import OhhhLogo from '../../images/OhhhFoundation.png'
 
 const pages = [
     ({ style }) => 
@@ -17,7 +18,9 @@ const pages = [
             flexDirection: 'column',
             fontSize: '1em'
         }}>
-            Welcome to Ohhh - it's nice to have you with us!
+            Welcome to 
+            <OhhhImg src={OhhhLogo} alt=""/>
+            It's nice to have you with us!
             <RiArrowRightSLine color='var(--ohhh-pink)' size='40px'/>
         </animated.div>,
 
@@ -65,7 +68,7 @@ export default function WelcomeBox() {
     })
 
     return (
-        <Wrapper className="simple-trans-main" onClick={onClick}>
+        <Wrapper onClick={onClick}>
             {transitions.map(({ item, props, key }) => {
             const Page = pages[item]
             return <Page key={key} style={props} />
@@ -83,4 +86,14 @@ const Wrapper = styled.div`
     svg {
         margin-left: auto;
     }
+`
+
+const OhhhImg = styled.img`
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1em;
+  background-color: transparent;
+  width: 12em;
+  height: auto;
+  display: block;
 `

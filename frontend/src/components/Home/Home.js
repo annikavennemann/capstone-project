@@ -2,7 +2,6 @@
 import loadLocally from '../../lib/loadLocally'
 import ReactPlayer from 'react-player'
 import styled from 'styled-components/macro'
-import welcomePageHeader from '../../images/welcomePageHeader.svg'
 import valueAmbitious from '../../images/valueAmbitious.png'
 import valueRespect from '../../images/valueRespect.png'
 import valueDiverse from '../../images/valueDiverse.png'
@@ -45,10 +44,10 @@ export default function Home() {
     return (
         <>
         <Header>
-            <img src={welcomePageHeader} alt="Welcome to Ohhh!" />
+            <h2>Hi <span>{userName}!</span></h2>
         </Header>
+    
         <Wrapper>
-            <Headline>Hi <span>{userName}!</span></Headline>
 
             <WelcomeBox />
             
@@ -62,8 +61,8 @@ export default function Home() {
             <ReactPlayer 
                 url='https://www.youtube.com/watch?v=JvJZOYTuzNA&feature=youtu.be' 
                 width='100%'
-                height='auto'
-                box-shadow='4px 4px 18px hsla(0, 0%, 0%, 0.3)'
+                height='10em'
+                boxShadow='4px 4px 18px hsla(0, 0%, 0%, 0.3)'
             />
             
             <h3>Who we aspire to be</h3>
@@ -118,37 +117,33 @@ export default function Home() {
 
 const Header = styled.header`
     margin: 0;
-    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(208,208,208,1) 100%);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(186,186,186,1) 100%);
     
-    img {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 1em;
+    h2 {
+        margin: 0 0.3em;
+    padding: 0.7em 1em;
+    font-size: 2.5em;
+    font-weight: normal;
+    color: black;
+
+        span{
+            font-family: Yellowtail;
+            font-size: 42px;
+            font-weight: 300;
+            color: #707070
+        }
     }
+    
 `
 
 const Wrapper = styled.div`
-    margin: 0.5em 2em;
+    margin: 0 2em 0.5em 2em;
+    background-color: white;
     
     p {
         text-align: center;
         font-size: 20px;
     }
-`
-
-const Headline = styled.h2`
-    margin: 0 0.3em;
-    font-size: 32px;
-    font-weight: lighter;
-    color: #F5BAC4;
-
-    span{
-        font-family: Yellowtail;
-        font-size: 32px;
-        font-weight: 300;
-        color: #707070
-    }  
 `
 
 const Vision = styled.ul`
