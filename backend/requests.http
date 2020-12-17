@@ -15,7 +15,7 @@ POST {{baseUrl}}/user
 Post {{baseUrl}}/login
 
 {
-    "email": "anni@ohhh.org",
+    "email": "annika@ohhh.org",
     "password": "helloohhh"
 }
 

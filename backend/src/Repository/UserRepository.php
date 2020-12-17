@@ -26,12 +26,12 @@ class UserRepository extends ServiceEntityRepository
         return $user;
     }
 
-    public function findUser(string $email, string $password): ?User {
+    // public function findUser(string $email, string $password): ?User {
         
-        return $this->findOneBy([
-            'email' => $email,
-            'password' => $password
-        ]);
-    }
+    //     return $this->findOneBy([
+    //         'email' => $email,
+    //         'password' => $password
+    //     ]);
+    // }
 
 }

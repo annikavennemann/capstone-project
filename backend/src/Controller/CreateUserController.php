@@ -13,6 +13,8 @@ use App\Entity\UserChecklistItems;
 use App\Repository\UserChecklistItemsRepository;
 use App\Repository\ChecklistItemRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Service\AuthenticationService;
+use App\Service\PasswordEncoder;
 
 
 class CreateUserController extends AbstractController
@@ -26,16 +28,24 @@ class CreateUserController extends AbstractController
         UserRepository $userRepository,
         UserSerializer $UserSerializer,
         UserChecklistItemsRepository $userChecklistItemsRepository,
-        ChecklistItemRepository $checklistItemRepository
+        ChecklistItemRepository $checklistItemRepository,
+        PasswordEncoder $passwordEncoder
     ): JsonResponse {
         
         {
             $user = $UserSerializer->deserialize($request->getContent());
+            $emailExists = $userRepository->findBy(['email' => $user->getEmail()]);
+
+            if(sizeof($emailExists) > 0) {
+                return $this->json(['errors'=>'This E-Mail is already registered.'], JsonResponse::HTTP_UNPROCESSABLE_ENTITY);
+            }
+
+            $passwordEncoder->encode($user->getPassword(), $user);
             $userRepository->save($user);
 
             $checklist = $checklistItemRepository->findAll();
             
-            //@TODO: in Service auslagern
+            //@TODO: foreach in Service auslagern
             
             foreach ($checklist as $checklistItem) {
                 $userChecklistItem = new UserChecklistItems();

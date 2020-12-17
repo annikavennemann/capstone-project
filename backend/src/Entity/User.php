@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -10,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -31,11 +33,14 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Regex( pattern="/\d/", message = "Your password must contain at least one number.")
      */
     private $password;
 
@@ -183,4 +188,34 @@ class User
 
         return $this;
     }
+
+    /**
+     * @return (Role|string)[] The user roles
+     */
+    public function getRoles()
+    {
+    return array('ROLE_USER');
+    }
+
+    /**
+     * @return string|null The salt
+     */
+    public function getSalt()
+    {
+        return null;
+        }
+    
+        /**
+         * Removes sensitive data from the user.
+         *
+         * This is important if, at any given point, sensitive information like
+         * the plain-text password is stored on this object.
+         */
+        public function eraseCredentials()
+        {
+    
+        }  
+    
+        public function getUsername() {}
+    
 }
