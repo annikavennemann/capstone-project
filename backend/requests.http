@@ -4,10 +4,10 @@
 POST {{baseUrl}}/user
 
 {
-    "firstname": "Annika",
+    "firstname": "Inga",
     "lastname": "Vennemann",
-    "email": "annika@ohhh.org",
-    "password": "helloohhh",
+    "email": "inga@ohhh.org",
+    "password": "ingaohhh",
     "startdate": "01-01-2021"
 }
 
@@ -15,16 +15,16 @@ POST {{baseUrl}}/user
 Post {{baseUrl}}/login
 
 {
-    "email": "annika@ohhh.org",
-    "password": "helloohhh"
+    "email": "inga@ohhh.org",
+    "password": "ingaohhh"
 }
 
 ###
 GET {{baseUrl}}/user
-Authorization: Bearer 5fd87b8d664567.74956045
+Authorization: Bearer 5fdb48e7a65952.91934062
 
 
 ###
 GET {{baseUrl}}/checklist
-Authorization: Bearer 5fd87b8d664567.74956045
+Authorization: Bearer 5fdb48e7a65952.91934062
 
