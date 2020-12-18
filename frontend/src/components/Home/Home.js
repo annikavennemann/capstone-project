@@ -2,10 +2,10 @@
 import loadLocally from '../../lib/loadLocally'
 import ReactPlayer from 'react-player'
 import styled from 'styled-components/macro'
-import valueAmbitious from '../../images/valueAmbitious.png'
-import valueRespect from '../../images/valueRespect.png'
-import valueDiverse from '../../images/valueDiverse.png'
-import valueVisonary from '../../images/valueVisonary.png'
+import valueAmbitious from '../../images/values/valueAmbitious.png'
+import valueRespect from '../../images/values/valueRespect.png'
+import valueDiverse from '../../images/values/valueDiverse.png'
+import valueVisonary from '../../images/values/valueVisonary.png'
 import mailIcon from '../../images/mailIcon.svg'
 import phoneIcon from '../../images/phoneIcon.svg'
 import { useEffect, useState } from 'react'
@@ -67,10 +67,11 @@ export default function Home() {
             
             <h3>Who we aspire to be</h3>
             <Vision>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                <li>Lorem ipsum.</li>
-                <li>Lorem ipsum dolor sit amet, consectetur.</li>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                <li>We create the future for a lifetime. <span>#extraohhhrdinary</span></li>
+                <li>We are always innovative and driven.</li>
+                <li>Our work has a high level of social responsibility - we make a difference.</li>
+                <li>We include everyone.</li>
+                <li>Climate change is one of the greatest challenges of our time. As a sustainable company, we are making a contribution.</li>
             </Vision>
             
 
@@ -90,7 +91,7 @@ export default function Home() {
                         <li>customer-centered</li>
                         <li>agile</li>
                         <li>data-based</li>
-                        <li>Together we can make a difference. <span>#strongertogether</span></li>
+                        <li>together we can make a difference <span>#strongertogether</span></li>
                     </WayOfWorking>
                 </div>
 
@@ -154,11 +155,16 @@ const Vision = styled.ul`
     padding: 0 0 0 1em;
 
     li {
-        font-size: 20px;
+        font-size: 1em;
         list-style: none;
         position: relative;
         margin-bottom: 0.5em;
         padding-left: 30px;
+
+        span {
+            font-size: 0.8em;
+            color: var(--ohhh-pink);
+        }
     }
 
     li::before {
@@ -205,7 +211,7 @@ const WayOfWorking = styled.ul`
     padding: 0 0 0 1em;
 
     li {
-        font-size: 20px;
+        font-size: 1em;
         list-style: none;
         position: relative;
         margin-bottom: 0.5em;
@@ -233,7 +239,7 @@ const WayOfWorking = styled.ul`
 
 const BoxNext = styled.div`
     margin: 2em 0;
-    padding: 0.5em 0 0.7em;
+    padding: 1em;
     background: linear-gradient(145deg, #f2f2f2, #ffffff);
     box-shadow:  8px 8px 16px #ededed, -8px -8px 16px #ffffff;
     border-radius: 20px;
@@ -248,7 +254,7 @@ const BoxNext = styled.div`
     p {
         margin: 0;
         text-align: center;
-        font-size: 20px;
+        font-size: 1em;
     }
 `
 

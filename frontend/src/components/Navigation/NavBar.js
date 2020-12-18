@@ -2,8 +2,8 @@ import styled from 'styled-components/macro'
 import { NavLink } from 'react-router-dom'
 import { BiHomeHeart } from "react-icons/bi";
 import { BiListCheck } from "react-icons/bi";
-import { IoPersonCircleOutline } from "react-icons/io5";
 import { BsPeopleFill } from "react-icons/bs";
+import { IoExitOutline } from "react-icons/io5";
 
 
 export default function Navigation() {
@@ -21,8 +21,8 @@ export default function Navigation() {
                 <BsPeopleFill fill='#c4c4c4' size='40px'/>
             </NavLinkStyled>
 
-            <NavLinkStyled to="#">
-                <IoPersonCircleOutline fill='#c4c4c4' size='40px'/>
+            <NavLinkStyled to="/ohhhrevoir">
+                <IoExitOutline color='#c4c4c4' size='40px'/>
             </NavLinkStyled>
             
 
