@@ -36,7 +36,6 @@ class AuthenticationController extends AbstractController
         };
 
         $token = $tokenRepository->create($user['user']);
-        //$authentication->deleteInvalidToken($user);
         
         return new JsonResponse(
             $tokenSerializer->serialize($token),
