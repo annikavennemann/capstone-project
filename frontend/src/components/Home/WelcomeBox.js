@@ -9,6 +9,11 @@ const pages = [
     ({ style }) => 
         <animated.div style={{ 
             ...style,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: 'auto',
             margin: '1em 0 0 0',
             padding: '2em 1em 1em 1em',
             background: 'linear-gradient(145deg, #f2f2f2, #ffffff)',
@@ -27,6 +32,11 @@ const pages = [
     ({ style }) => 
         <animated.div style={{ 
             ...style,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: 'auto',
             margin: '1em 0 0 0',
             padding: '2em 1em 1em 1em',
             background: 'linear-gradient(145deg, #f2f2f2, #ffffff)',
@@ -36,13 +46,18 @@ const pages = [
             flexDirection: 'column',
             fontSize: '1em'
         }}>
-            We have developed this app especially for you, so that you have a great start into your new job.
+            <br/>We have developed this app especially for you, so that you have a great start into your new job.<br/><br/>
             <RiArrowRightSLine color='var(--ohhh-pink)' size='40px'/>
         </animated.div>,
 
     ({ style }) => 
         <animated.div style={{ 
             ...style,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: 'auto',
             margin: '1em 0 0 0',
             padding: '2em 1em 1em 1em',
             background: 'linear-gradient(145deg, #f2f2f2, #ffffff)',
@@ -52,7 +67,7 @@ const pages = [
             flexDirection: 'column',
             fontSize: '1em'
         }}>
-            To give you an overview of our work, we prepared a short video for you. Check it out:
+            <br/>To give you an overview of where we come from & who we are as an organisation, we prepared a short video for you. <br/><br/>Check it out:<br/>
             <RiArrowDownSLine color='var(--ohhh-pink)' size='40px'/>
     </animated.div>,
 ]
@@ -82,6 +97,7 @@ const Wrapper = styled.div`
     align-items: center;
     will-change: transform, opacity;
     text-align: center;
+    height: 270px;
 
     svg {
         margin-left: auto;
@@ -91,7 +107,6 @@ const Wrapper = styled.div`
 const OhhhImg = styled.img`
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 1em;
   background-color: transparent;
   width: 12em;
   height: auto;
