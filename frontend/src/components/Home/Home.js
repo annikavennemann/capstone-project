@@ -1,6 +1,5 @@
 
 import loadLocally from '../../lib/loadLocally'
-import ReactPlayer from 'react-player'
 import styled from 'styled-components/macro'
 import valueAmbitious from '../../images/values/valueAmbitious.png'
 import valueRespect from '../../images/values/valueRespect.png'
@@ -58,12 +57,16 @@ export default function Home() {
                 onClick={() => setIsInfoShown(!isInfoShown)}
             />
 
-            <ReactPlayer 
-                url='https://www.youtube.com/watch?v=JvJZOYTuzNA&feature=youtu.be' 
-                width='100%'
-                height='10em'
-                boxShadow='4px 4px 18px hsla(0, 0%, 0%, 0.3)'
-            />
+            <iframe 
+                title="Ohhh!"
+                width="100%"
+                height="auto"
+                src="https://www.youtube.com/embed/JvJZOYTuzNA"
+                frameborder="0"
+                padding="2em 0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
             
             <h3>Who we aspire to be</h3>
             <Vision>
