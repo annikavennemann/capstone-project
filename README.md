@@ -1,7 +1,7 @@
 # capstone-project
 
 ## Design
-![Mockup](frontend/images/Ohhhboarding_Mockup.png)
+![Mockup](frontend/src/images/Ohhhboarding_Mockup.png)
 
 As the final project of my web development trainee at neuefische GmbH I developed an onboarding app - in cooperation with Youth against AIDS e. V.
 
