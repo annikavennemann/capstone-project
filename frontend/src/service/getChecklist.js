@@ -1,10 +1,10 @@
-import loadLocally from '../lib/loadLocally';
+import loadLocally from '../lib/loadLocally'
 
 export async function getChecklist() {
   const apiBaseUrl = process.env.REACT_APP_API_BASE_URL
-    
+
   const myHeaders = new Headers()
-  const token = loadLocally("authenticationToken");
+  const token = loadLocally('authenticationToken')
   myHeaders.append('Content-Type', 'application/json')
   myHeaders.append('Authorization', 'Bearer ' + token.value)
 

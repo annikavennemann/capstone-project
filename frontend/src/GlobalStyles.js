@@ -25,5 +25,3 @@ export default createGlobalStyle`
         --ohhh-blue: #029FE3;
     }
 `
-
-

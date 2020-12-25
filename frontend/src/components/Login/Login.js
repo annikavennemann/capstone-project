@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useHistory } from "react-router-dom"
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import signInHeader from '../../images/signInHeader.svg'
 import signInButton from '../../images/signInButton.svg'
@@ -7,70 +7,69 @@ import OhhhLogo from '../../images/OhhhFoundation.png'
 import { postLogin } from '../../service/postLogin'
 
 export default function Login() {
-    const [loginData, setLoginData] = useState({
-      email: '',
-      password: ''
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: '',
+  })
+
+  const history = useHistory()
+
+  return (
+    <>
+      <header>
+        <HeaderImg src={signInHeader} alt="Ohhh hi! Great day!" />
+      </header>
+      <FormStyled action="/home">
+        <label htmlFor="email" />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          onChange={onChange}
+          value={loginData.email}
+        />
+
+        <label htmlFor="password" />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          onChange={onChange}
+          value={loginData.password}
+        />
+        <SignInWrapper>
+          <p>Sign in</p>
+          <button onClick={loginUser}>
+            <img src={signInButton} alt="" />
+          </button>
+        </SignInWrapper>
+
+        <OhhhImg src={OhhhLogo} alt="" />
+      </FormStyled>
+
+      <FooterStyled>
+        <p>Havn't an account yet?</p>
+        <a href="/create-account">Sign up.</a>
+      </FooterStyled>
+    </>
+  )
+
+  function onChange(event) {
+    setLoginData({
+      ...loginData,
+      [event.target.name]: event.target.value,
     })
-    
-    const history = useHistory();
+  }
 
-    return (
-        <>
-          <header>
-              <HeaderImg src={signInHeader} alt="Ohhh hi! Great day!" />
-          </header>
-          <FormStyled action="/home">
-            <label htmlFor="email" />
-            <input 
-              type="email"
-              name="email"
-              placeholder="Email"
-              onChange={onChange}
-              value={loginData.email}
-            />
+  function loginUser(event) {
+    event.preventDefault()
 
-            <label htmlFor="password" />
-            <input 
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={onChange}
-              value={loginData.password}
-            />
-            <SignInWrapper>
-              <p>Sign in</p>
-              <button onClick={loginUser}><img src={signInButton} alt=""/></button>
-            </SignInWrapper>
-            
-          <OhhhImg src={OhhhLogo} alt=""/>
-          </FormStyled>
+    postLogin(loginData)
 
-
-          <FooterStyled>
-                <p>Havn't an account yet?</p>
-                <a href="/create-account">Sign up.</a>
-          </FooterStyled>
-        </>
-      );
-
-      function onChange(event) {
-        setLoginData({
-          ...loginData,
-          [event.target.name]: event.target.value
-        })
-      }
-
-      function loginUser(event) {
-        event.preventDefault();
-       
-        postLogin(loginData)
-
-        // @TODO: if password isnt valid -> send User info
-        history.push("/home")
-      }
+    // @TODO: if password isnt valid -> send User info
+    history.push('/home')
+  }
 }
-
-
 
 const HeaderImg = styled.img`
   display: block;
@@ -90,12 +89,12 @@ const FormStyled = styled.form`
     margin-bottom: 2em;
     padding: 0.7em 0;
     border: 0;
-    border-bottom: 1px solid #D3D3D3;
+    border-bottom: 1px solid #d3d3d3;
   }
 
   input::placeholder {
     font-size: 1.2em;
-    color: #D3D3D3;
+    color: #d3d3d3;
   }
 `
 
@@ -125,12 +124,12 @@ const OhhhImg = styled.img`
 `
 
 const FooterStyled = styled.footer`
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    bottom: 1em;
-    width: 100%;
-  
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  bottom: 1em;
+  width: 100%;
+
   p {
     margin: 0;
     padding-right: 0.5em;
@@ -139,7 +138,7 @@ const FooterStyled = styled.footer`
 
   a {
     text-decoration: none;
-    color: #029FE3;
+    color: #029fe3;
     font-size: 0.9em;
   }
 `

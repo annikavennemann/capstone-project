@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import RegisterForm from './components/Registration/RegisterForm'
 import Login from './components/Login/Login'
@@ -14,29 +14,28 @@ export default function App() {
   }
 
   return (
-      <>
-        <Switch>
-          <Route path="/create-account">
-            <RegisterForm onSubmit={addUser}/>
-          </Route>
+    <>
+      <Switch>
+        <Route path="/create-account">
+          <RegisterForm onSubmit={addUser} />
+        </Route>
 
-          <Route path="/checklist">
-            <Checklist />
-          </Route>
+        <Route path="/checklist">
+          <Checklist />
+        </Route>
 
-          <Route path="/home">
-            <Home />
-          </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
 
-          <Route path="/ohhhrevoir">
-            <Logout />
-          </Route>
-          
-          <Route path="/">
-            <Login />
-          </Route>
-          
-        </Switch>
-      </>
-  );
+        <Route path="/ohhhrevoir">
+          <Logout />
+        </Route>
+
+        <Route path="/">
+          <Login />
+        </Route>
+      </Switch>
+    </>
+  )
 }

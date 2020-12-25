@@ -1,15 +1,15 @@
 import styled from 'styled-components/macro'
 
 export default function ChecklistTeaser() {
-    return (
-        <BoxNext>
-          <h3>Ohhh, what's next?</h3>
-          <p>
-            To give you an overview of upcoming tasks, we prepared a personal
-            checklist for you.
-          </p>
-        </BoxNext>
-    )
+  return (
+    <BoxNext>
+      <h3>Ohhh, what's next?</h3>
+      <p>
+        To give you an overview of upcoming tasks, we prepared a personal
+        checklist for you.
+      </p>
+    </BoxNext>
+  )
 }
 
 const BoxNext = styled.div`
